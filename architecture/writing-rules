@@ -1,0 +1,35 @@
+naming name:
+    routes:
+        back:
+            example: get_all_users
+        front:
+            example: get_all_users
+            
+    folders name:
+        font:
+            example: Name-Lest-Name
+        back:
+            example: name-lest-name
+
+    file name: 
+        front:
+            example: Name-Lest-Name
+        back:
+            exemple: name-lest-name
+
+    variables:
+        front: 
+            exemple: nameLestName
+        back: 
+            exemple: nameLestName
+
+file scheme:
+    back:
+        main:
+            sub main:
+                classes file:
+                controller:
+
+
+
+

@@ -1,0 +1,4 @@
+console.log('default')
+console.debug('validarte Rafael, debug in line and infos')
+console.warn('signal yellow')
+console.error('signar red')
