@@ -1,34 +1,46 @@
-naming name:
-    routes:
+NAMING NAME:
+    ROUTES:
         back:
             example: get_all_users
         front:
             example: get_all_users
             
-    folders name:
+    FOLDER:
         font:
             example: Name-Lest-Name
         back:
             example: name-lest-name
 
-    file name: 
+    FILE: 
         front:
             example: Name-Lest-Name
         back:
             exemple: name-lest-name
 
-    variables:
+    VARIABLES:
         front: 
             exemple: nameLestName
         back: 
             exemple: nameLestName
+    
+    DATA BASE:
+        front: never crud!!
+        back:
+            columns:
+                exemple: z_insert_date
 
-file scheme:
+    IMPORT:
+        default file:
+            exemple: import exemple = require('./import/import-exemple')
+        class file:
+            exemple: import Exemple = require('./import/import')
+        
+FILE SCHEME:
     back:
         main:
             sub main:
-                classes file:
-                controller:
+                class file
+                controller
 
 
 
