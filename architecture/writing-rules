@@ -42,6 +42,13 @@ FILE SCHEME:
                 class file
                 controller
 
+DEFAULT ERRORS:
+    exemple: {error: error || true, message: "user not found"}
 
 
 
+
+console.log('default')
+console.debug('validarte Rafael, debug in line and infos')
+console.warn('signal yellow')
+console.error('signar red')

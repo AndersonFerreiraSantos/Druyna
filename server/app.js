@@ -1,22 +1,27 @@
-const routes = require('./routes/api-router')
-const admin = require("firebase-admin");
 const express = require('express');
+const defaultRoutes = require('./routes/defaut-routes')
+const a = require('./api/user/user-routes')
+const admin = require('firebase-admin')
+const path = require('path')
 const app = express()
 const port = 8080
 
-const serviceAccount = require('./database/serviceAccountKey.json');
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-  });
-  
-//import my middlewares
 const middlewaresPost = require('./src/middlewares/middlewares')
 
-//use middlewares
+//database
+let serviceAccount = require("./database/serviceAccountKey.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+
+
+
+
 app.use(middlewaresPost.requestDate)
 app.use(express.json());
-app.use(routes)
+app.use(defaultRoutes)
+//app.use('/user', a)
 app.listen(port, () => {})
 
 
