@@ -4,9 +4,7 @@ const Home = () => {
     return(
         <div>
             <h1>HOME</h1>
-            <button>
-                
-            </button>
+            <button type = 'button' onClick = {() => {console.log('okkk')}}> cadastro google </button>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-{
+export default {
     "type": "service_account",
     "project_id": "druyna-6262b",
     "private_key_id": "f52a0b603f2f0386b8a41bb32116c6d7d73aa8c7",

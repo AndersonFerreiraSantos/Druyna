@@ -1,10 +1,16 @@
-const express = require('express');
-const router = require('express').Router();
-const crudUser = require('./crud-user')
+import router from 'router'
+import crud from './crud-user'
+import authGoogle from './autentication/google'
+
+router.get('/authGoogle', (request, response) => {
+    return new Promise((resolve, reject) => {
+        authGoogle.authGoogle()
+    })
+} )
 
 router.post('/create', (request, response) => {
     return new Promise((resolve, reject) => {
-        crudUser.createUser(request).then((result) => {
+        crud.createUser(request).then((result) => {
             response.json(result)
         })
     })
@@ -12,7 +18,7 @@ router.post('/create', (request, response) => {
 
 router.get('/getUid', (request, response) => { 
         return new Promise((resolve, reject) => {
-            crudUser.getUid(request).then((result) => {
+            crud.getUid(request).then((result) => {
                 response.json(result)
         })
     })
@@ -20,7 +26,7 @@ router.get('/getUid', (request, response) => {
 
 router.delete('/deleteUid', (request, response) => {
         return new Promise((resolve, reject) => {
-            crudUser.deleteUid(request).then((result) => {
+            crud.deleteUid(request).then((result) => {
                 response.json(result)
         })
     })

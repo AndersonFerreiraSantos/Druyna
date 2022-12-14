@@ -1,6 +1,7 @@
 const DB = require('firebase-admin')
 const collection = 'users'
 
+
 async function createUser(sendData){
     console.log(sendData)
     return new Promise((resolve, reject) => {
