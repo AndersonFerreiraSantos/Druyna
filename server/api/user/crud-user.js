@@ -1,12 +1,29 @@
-const crud = require('../../database/crud-firebase')
+const DB = require('firebase-admin')
 const collection = 'users'
+
 async function createUser(sendData){
+    console.log(sendData)
     return new Promise((resolve, reject) => {
-        crud.create(collection, sendData.body).then((result) => {
-            resolve(result)
-        })
+        DB.auth()
+  .createUser({
+    email: 'anddersonfsantos@gmail.com',
+    displayName: 'Santer',
+    emailVerified: true
+  })
+  .then((userRecord) => {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully created new user:', userRecord.uid);
+  })
+  .catch((error) => {
+    console.log('Error creating new user:', error);
+  });
+
+        // crud.create(collection, sendData.body).then((result) => {
+        //     resolve(result)
+        // })
     })
 }
+
 
 async function getUid(sendData){
     return new Promise((resolve, reject) => {
@@ -20,7 +37,6 @@ async function getUid(sendData){
                 }
                 resolve(sendData)
             }else if(result._serializer.allowUndefined == false){
-                
                 resolve({error: true, message: 'user not found'})
             }else{
                 resolve({error: result, message: 'error fetching uid'})

@@ -1,8 +1,6 @@
 const express = require('express');
 const defaultRoutes = require('./routes/defaut-routes')
-const a = require('./api/user/user-routes')
 const admin = require('firebase-admin')
-const path = require('path')
 const app = express()
 const port = 8080
 
@@ -13,10 +11,6 @@ let serviceAccount = require("./database/serviceAccountKey.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
-
-
-
-
 
 app.use(middlewaresPost.requestDate)
 app.use(express.json());

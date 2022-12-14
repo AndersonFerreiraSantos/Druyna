@@ -31,9 +31,9 @@ NAMING NAME:
 
     IMPORT:
         default file:
-            exemple: import exemple = require('./import/import-exemple')
+            exemple: 'import exemple = require('./import/import-exemple')'
         class file:
-            exemple: import Exemple = require('./import/import')
+            exemple: 'import Exemple = require('./import/import')'
         
 FILE SCHEME:
     back:

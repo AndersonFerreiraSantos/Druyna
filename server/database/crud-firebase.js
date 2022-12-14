@@ -9,6 +9,12 @@ function create(collection, receiveData){
     })
 }
 
+function deleteUid(collection, id){
+    return new Promise((resolve, reject) => {
+        DB.firestore().collection(collection).doc(id).delete().then((result) => {resolve(result)})
+    })
+}
+
 function get(collection, id){
     return new Promise((resolve, reject) => {
         DB.firestore().collection(collection).doc(id).get().then((result) => {
@@ -17,9 +23,9 @@ function get(collection, id){
     })
 }
 
-function deleteUid(collection, id){
+function getFilter(collection, column, value){
     return new Promise((resolve, reject) => {
-        DB.firestore().collection(collection).doc(id).delete().then((result) => {resolve(result)})
+        DB.firestore().collection(collection).doc()
     })
 }
 

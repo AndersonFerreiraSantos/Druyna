@@ -1,0 +1,70 @@
+O que é NPM:
+    Gerenciado de pacotes do node(como um GIT mas de pacote para o node), mesmo que o apt do linux.
+    É possivel executar scripts pelo NPM, rotinas etc.
+    !!!! Os módulos externos ficam na pasta node_modules, essa pasta deve ser descartavel, um rotina para reinstalar os pacotes será ciada, tudo isso para faciliar a atualização desses apcotes.
+    Os módulos externos podem ser instalados via npm, para isso é necessário inicializar o npm com o comando "npm init"
+    A criação de um projeto gera sempre um arquivo, o package.json, é uma maneira de verificar o que foi instalado, quais scripts que tem, entre outras coisas.
+Terminal CDMER é utilizado no windows para simular um terminal do linux, nem todos os comandos são executados corretamente no PowerShell    
+Módulos são scripts reaproveitáveis. inter "nós desenvolvemos, core modules" "módulos que vem com o Node.js", externos "módulos que instamos via NPM".
+
+O que é Express:
+    È uma framwok para Node.js, server para criar aplicações WEB, rotas, renderizar HTMl, conectar a banco de dado entre outras coisas.
+
+Síncrono e Assíncrono:
+    Síncrono: O codigo ira executar sincronizado, ou seja, vai executar o proximo assim que terminar o que esta executando.
+    Assíncrono: Ele não precisa terminar um para executar o proximo.
+
+Template Engine:
+    Uma forma de deixar o HTML dinâmico, inserindo variáveis do back-end no front-end, criando layouts que são reaproveitaveis
+
+CORE MODULES: Conhecimento sobre módulos do node, caso o objetivo seja verificar arquivos, sistema, configurar servidor é necessário verificar essa pasta.
+
+Core Modules fundamentais para crianção de software em node(não é necessário instalar):
+    http: módulo para criar servidores HTTP;
+    path: extrair informações de paths (caminhos) de arquivos;
+    fs: file system, leitura e escrita de arquivos;
+    url: módulo para trabalhar com URLs;
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Insalações:
+    NodeJS: https://nodejs.org/en/ 
+    cmder: https://cmder.net/
+    Pacotes: pesquisar pactes do Node https://www.npmjs.com/search?q=express
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Comandos:
+    node -v: Verificar versão do NodeJS.
+    npm -v: Verificar versão do NPM.
+    npm install: Reinstala todos os pacotes baseado no package.json, caso a pasta node_modules seja exclida ou o projeto seja executado em outro equipamento.
+    npm install --save-dev "pacote": Para instalar um pacote como dependencia dev.
+    npm update: Atualiza todos os pacotes.
+    npm update "pacote": Atualiza um pacote especifico.
+    npx npm-check-updates -u: Verifica se tem algum dependencia que precisa de atualização
+    npm run "scritp": Serve para executar scripts configurado no arquivo package.json.
+    npm install -g "pacote": serve para instalar os pacotes de forma global.
+        npm link "pacote": Em alguns casos é necessário executar o npm link "pacote" pois alguns pacotes necessita dos arquivos localmente.
+    npm uninstall "pacote": Para remover os pacotes, ele remove as dependencias dos arquivos json também.
+    node: acessa o node via terminal.
+    nom install nodemon: Serve para atualizar auttomaticamente o servidor, lembrar de instalar em modo dev '--save-dev'
+
+    npm init: inicializar o NPM no prjeto (permite instalar modulos externos).
+        OBS: Lembrar de inicializar o projeto com 'npm init' antes.
+     Pacotes NPM:
+        npm install minimist: minimist é um pacote que permite extrair argumentos do console.
+        npm install chalk: chalk é um pacote para uma visualização do console mais agradável.
+            Correção - Para funcionar corretamente: npm install chalk@4.1.2
+        npm install inquirer: Módulo para lidar melhor com input do usuário.
+            Correção - Para funcionar corretamente: npm install inquirer@8.1.0
+        npm install lodash: Verificar...(compara array)
+        npm install express: responsavel po renderizar html, fazer conexão com banco entre outras coisas.
+        npm install express-handlebars:
+
+
+
+
+    OBS: 
+        Para reparar basta trocar esta linha de código:
+        app.engine('handlebars', exphbs())
+
+        Por esta:
+        app.engine('handlebars', exphbs.engine())
