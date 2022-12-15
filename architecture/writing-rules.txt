@@ -37,9 +37,11 @@ NAMING NAME:
         
 FILE SCHEME:
     back:
-        main:
-            sub main:
-                class file
+        archive main:
+            archive sub main:
+
+                file class
+                filew function
                 controller
 
 DEFAULT ERRORS:
