@@ -1,7 +1,5 @@
-import router from 'router'
-import crud from './crud-user'
-import authGoogle from './autentication/google'
-
+const crud = require('./crud-user')
+const router = require('express').Router()
 router.get('/authGoogle', (request, response) => {
     return new Promise((resolve, reject) => {
         authGoogle.authGoogle()
