@@ -1,9 +1,11 @@
 import React from "react";
 import req from '../../../services/request/request'
 
+import '../css/Home.css'
+
 const Home = () => {
     return(
-        <div>
+        <div className = 'Home'>
             <h1>HOME</h1>
             <button type = 'button' onClick = {() => { 
                 console.log('clear')
