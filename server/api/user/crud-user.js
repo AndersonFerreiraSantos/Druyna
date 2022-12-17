@@ -1,34 +1,24 @@
 const DB = require('firebase-admin')
-const collection = 'users'
+const CRUD = require('./crud-user')
+const COLLECTION = 'users'
 
+const MESSAGE = require('./metadata/user-msg')
 
 async function createUser(sendData){
     console.log(sendData)
     return new Promise((resolve, reject) => {
-        DB.auth()
-  .createUser({
-    email: 'anddersonfsantos@gmail.com',
-    displayName: 'Santer',
-    emailVerified: true
-  })
-  .then((userRecord) => {
-    // See the UserRecord reference doc for the contents of userRecord.
-    console.log('Successfully created new user:', userRecord.uid);
-  })
-  .catch((error) => {
-    console.log('Error creating new user:', error);
-  });
-
-        // crud.create(collection, sendData.body).then((result) => {
-        //     resolve(result)
-        // })
+        DB.auth().createUser(sendData).then((result) => {
+            resolve({message: MESSAGE.SUCCESS.create, body: { displayName: result.displayName, email: result.email, uid: result.email }})
+        })
+        .catch((error) => {
+            reject({message: error.message})  
+        });
     })
 }
 
-
 async function getUid(sendData){
     return new Promise((resolve, reject) => {
-        crud.get(collection, sendData.body.id).then((result) => {
+        CRUD.get(COLLECTION, sendData.body.id).then((result) => {
             if(result?._fieldsProto?.user?.stringValue){
                 const sendData = {
                     user: result._fieldsProto.user.stringValue,
@@ -49,7 +39,7 @@ async function getUid(sendData){
 
 async function deleteUid(sendData){
     return new Promise((resolve, reject) => {
-        crud.deleteUid(collection, sendData.body.id).then((result) => {
+        CRUD.deleteUid(collection, sendData.body.id).then((result) => {
             resolve(result)})
     })
 }

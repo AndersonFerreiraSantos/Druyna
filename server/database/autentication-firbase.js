@@ -1,8 +1,8 @@
-import firebase from 'firebase/app';
-import 'firebase/firebase-auth';
-import 'firebase/firebase-firestore';
+// const admin = require('firebase-admin')
 
-import config from './serviceAccountKey';
 
-const inicialized = firebase.inicialized(config);
-const db = inicialized.firestore();
+// //database
+// let serviceAccount = require("./serviceAccountKey.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount)
+// });

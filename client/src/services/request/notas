@@ -1,0 +1,7 @@
+json() - retorna a resposta da requisição em formato JSON.
+clone() - cria um clone da resposta da requisição.
+redirect() - cria uma nova resposta com uma URL diferente.
+formData() - retorna o resultado da requisição como um objeto do tipo FormData.
+arrayBuffer() - retorna a resposta da requisição como um ArrayBuffer.
+blob() - retorna a resposta da requisição como um Blob.
+text() - retorna a resposta da requisição como uma string.
