@@ -7,13 +7,17 @@ NAMING NAME:
             
     FOLDER:
         font:
-            example: Name-Lest-Name
+            example: name-lest-name
         back:
             example: name-lest-name
 
     FILE: 
         front:
-            example: Name-Lest-Name
+            example:
+                component: C_NameLestName
+                style: S_NameLestName
+                page: P_NameLestName
+
         back:
             exemple: name-lest-name
 
@@ -47,10 +51,11 @@ FILE SCHEME:
 DEFAULT ERRORS:
     exemple: {error: error || true, message: "user not found"}
 
+PATH's: 
+    template case: /home/anderson/Documentos/Druyna/client/package-lock.json
 
-
-
+INFO IN DEVELOPEMENT:
 console.log('default')
-console.debug('validarte Rafael, debug in line and infos')
+console.debug('debug in line and infos')
 console.warn('signal yellow')
 console.error('signar red')

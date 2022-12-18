@@ -1,8 +1,8 @@
-import { Container, AllItens, AllPatternsButtons, AllUserButtons , UserButtons, PatternsButton  } from '../css/Header-style'
+import { Container, AllItens, AllPatternsButtons, AllUserButtons , UserButtons, PatternsButton  } from '../css/Header'
 
-import METADATA from '../metadata/header-metadata'
+import METADATA from '../metadata/Header'
 
-import ComponentButtonHeader from '../../../components/button-header/button-header'
+import ButtonHeader from '../../../components/button-header/component/ButtonHeader'
 
 const Header = () => {
     return (
@@ -13,7 +13,7 @@ const Header = () => {
                     {METADATA.PATTERN.map((item) => {
                         return (
                             <PatternsButton>
-                                <ComponentButtonHeader 
+                                <ButtonHeader 
                                 textName = {item.textName}
                                 onClick={item.onClick} /> 
                             </PatternsButton>
@@ -25,7 +25,7 @@ const Header = () => {
                     {METADATA.USER.map((item) => {
                         return (
                             <UserButtons>
-                                <ComponentButtonHeader 
+                                <ButtonHeader 
                                 textName = {item.textName}
                                 onClick={item.onClick} /> 
                             </UserButtons>
