@@ -1,40 +1,40 @@
-import '../css/Header.css'
+import { Container, AllItens, AllPatternsButtons, AllUserButtons , UserButtons, PatternsButton  } from '../css/Header-style'
 
 import METADATA from '../metadata/header-metadata'
 
-import C_ButtonHeader from '../../../components/button-header/button-header'
+import ComponentButtonHeader from '../../../components/button-header/button-header'
 
 const Header = () => {
     return (
-        <div className = 'Header'>
-            <div className = 'body'>
+        <Container>
+            <AllItens>
 
-                <div className = 'div_all_patterns_buttons'>
+                <AllPatternsButtons>
                     {METADATA.PATTERN.map((item) => {
                         return (
-                            <div className='div_buttons_patterns'>
-                                <C_ButtonHeader 
+                            <PatternsButton>
+                                <ComponentButtonHeader 
                                 textName = {item.textName}
                                 onClick={item.onClick} /> 
-                            </div>
+                            </PatternsButton>
                         )
                     })}
-                </div>
+                </AllPatternsButtons>
 
-                <div className = 'div_all_user_buttons'>
+                <AllUserButtons>
                     {METADATA.USER.map((item) => {
                         return (
-                            <div className='div_buttons_user'>
-                                <C_ButtonHeader 
+                            <UserButtons>
+                                <ComponentButtonHeader 
                                 textName = {item.textName}
                                 onClick={item.onClick} /> 
-                            </div>
+                            </UserButtons>
                         )
                     })}
-                </div>
+                </AllUserButtons>
 
-            </div>
-        </div>
+            </AllItens>
+        </Container>
     )
 }
 

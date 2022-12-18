@@ -1,18 +1,17 @@
 import React from "react";
 import req from '../../../services/request/request'
-
-import '../css/Home.css'
+import { Container, Body } from '../css/Home-style'
 
 const Home = () => {
     return(
-        <div className = 'Home'>
-            <div className = 'body'>
+        <Container>
+            <Body>
                 <button type = 'button' onClick = {() => { 
                     console.log('clear')
                     req.POST('/user/createUser', {email: 'email2@exemple.com', displayName: 'Anderson', password: 'Santer111'})
                 }}> cadastro google </button>
-            </div>
-        </div>
+            </Body>
+        </Container>
     )
 }
 export default Home

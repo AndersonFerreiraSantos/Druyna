@@ -1,11 +1,14 @@
-import './button-header.css'
+import { Button, Flat, Component } from './button-header-style'
 
-const C_ButtonHeader = ({onClick, textName, }) => {
+const ComponentButtonHeader = ({onClick, textName, }) => {
     return (
-        <div>
-            <button className = 'button' onClick={onClick}>{textName}</button>
-        </div>
+        <Component>
+            <Button onClick={onClick}>{textName}</Button>
+
+            <Flat />
+
+        </Component>
     )
 }
 
-export default C_ButtonHeader
+export default ComponentButtonHeader

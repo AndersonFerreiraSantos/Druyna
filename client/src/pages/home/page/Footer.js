@@ -1,13 +1,12 @@
-import '../css/Footer.css'
-
+import { Container, AllItens } from'../css/Footer-style'
 
 const Footer = () => {
     return (
-        <div className = 'Footer'>
-            <div className = 'body'>
+        <Container>
+            <AllItens>
                 <h1>Footer</h1>
-            </div>
-        </div>
+            </AllItens>
+        </Container>
     )
 }
 

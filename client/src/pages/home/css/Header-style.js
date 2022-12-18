@@ -1,46 +1,43 @@
-.Header {
+import styled from 'styled-components'
+
+export const Container = styled.div`
     align-items: center;
     height: 5%;
     width: 100%;
     background-color: rgb(81, 255, 0);
-}
+`
 
-.body {
+export const AllItens = styled.div`
     display: flex;
     position: absolute;
     width: 100%;
     height: 5%;
-}
+`
 
-/* -------------------------------------------------------------------------------------- */
-
-.div_all_patterns_buttons {
+export const AllPatternsButtons = styled.div`
     background-color: black;
     width: 70%;
     height: 100%;
     display: flex;
     align-items: center;
+`
 
-}
-
-.div_buttons_patterns {
+export const PatternsButton = styled.div`
     float: left;
     margin-left: auto;
     margin-right: auto;
-}
+`
 
-/* -------------------------------------------------------------------------------------- */
-
-.div_all_user_buttons {
+export const AllUserButtons = styled.div`
     background-color: rgb(51, 54, 50);
     width: 30%;
     height: 100%;
     display: flex;
     align-items: center;
     float: right;
-}
+`
 
-.div_buttons_user {
+export const UserButtons = styled.div`
     margin-left: auto;
     margin-right: auto;
-}
+`
