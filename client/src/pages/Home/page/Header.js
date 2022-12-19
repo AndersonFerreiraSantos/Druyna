@@ -4,7 +4,7 @@ import METADATA from '../metadata/Header'
 
 import ButtonHeader from '../../../components/button-header/component/ButtonHeader'
 
-const Header = () => {
+const Header = ({setExternalPage}) => {
     return (
         <Container>
             <AllItens>
@@ -14,8 +14,8 @@ const Header = () => {
                         return (
                             <PatternsButton>
                                 <ButtonHeader 
-                                textName = {item.textName}
-                                onClick={item.onClick} /> 
+                                textName = {item.title}
+                                onClick={() => setExternalPage(item.onClick)} /> 
                             </PatternsButton>
                         )
                     })}
@@ -26,8 +26,8 @@ const Header = () => {
                         return (
                             <UserButtons>
                                 <ButtonHeader 
-                                textName = {item.textName}
-                                onClick={item.onClick} /> 
+                                textName = {item.title}
+                                onClick={() => setExternalPage(item.onClick)} /> 
                             </UserButtons>
                         )
                     })}

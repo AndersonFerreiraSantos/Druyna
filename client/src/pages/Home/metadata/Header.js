@@ -1,33 +1,28 @@
+
 const PATTERN = [
     {
-        textName: 'information', 
-        onClick: () => {console.log('Button 1')}
+        title: 'home', 
+        onClick: 'Home'
     },
     {
-        textName: 'information', 
-        onClick: () => {console.log('Button 2')}
+        title: 'update', 
+        onClick: 'Update'
     },
     {
-        textName: 'information', 
-        onClick: () => {console.log('Button 3')}
+        title: 'news', 
+        onClick: 'News'
     },
-    {
-        textName: 'information', 
-        onClick: () => {console.log('Button 4')}
-    },
-    
 ]
 
 const USER = [
     {
-        textName: 'information', 
-        onClick: () => {console.log('Button 1')}
+        title: 'login', 
+        onClick: 'UserLogin'
     },
     {
-        textName: 'information', 
-        onClick: () => {console.log('Button 2')}
+        title: 'register', 
+        onClick: 'UserRegister'
     },
-    
 ]
 
 exports.PATTERN = PATTERN

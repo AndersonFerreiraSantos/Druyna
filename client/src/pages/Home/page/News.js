@@ -1,6 +1,6 @@
 import React from "react"
-import { Container } from '../css/Home'
-const Home = () => {
+import { Container } from '../css/News'
+const News = () => {
     return (
         <Container>
 
@@ -8,4 +8,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default News
