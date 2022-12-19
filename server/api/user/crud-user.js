@@ -2,16 +2,21 @@ const DB = require('firebase-admin')
 const CRUD = require('./crud-user')
 const COLLECTION = 'users'
 
-const MESSAGE = require('./metadata/user-msg')
+const MESSAGE = require('./metadata/message')
 
 async function createUser(sendData){
     console.log(sendData)
     return new Promise((resolve, reject) => {
         DB.auth().createUser(sendData).then((result) => {
-            resolve({message: MESSAGE.SUCCESS.create, body: { displayName: result.displayName, email: result.email, uid: result.email }})
+            resolve({message: MESSAGE.SUCCESS.CREATE.SUCCESSFULLY_CREATED, displayName: result.displayName, email: result.email, uid: result.email })
         })
         .catch((error) => {
-            reject({message: error.message})  
+            console.log(error, MESSAGE.ERROR.CREATE.INVALID_EMAIL)
+            error.errorInfo.code == 'auth/invalid-email' ?  
+            reject(MESSAGE.ERROR.CREATE.INVALID_EMAIL) : 
+            error.errorInfo.code == 'auth/invalid-password'?  
+            reject(MESSAGE.ERROR.CREATE.INVALID_PASSWORD) : 
+            reject (error.errorInfo)
         });
     })
 }

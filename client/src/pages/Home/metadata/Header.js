@@ -16,12 +16,12 @@ const PATTERN = [
 
 const USER = [
     {
-        title: 'login', 
-        onClick: 'UserLogin'
-    },
-    {
         title: 'register', 
         onClick: 'UserRegister'
+    },
+    {
+        title: 'login', 
+        onClick: 'UserLogin'
     },
 ]
 
