@@ -1,5 +1,4 @@
 async function POST(url, sendData){
-    console.log(sendData)
     return new Promise((resolve) => {
         fetch(`http://localhost:8080${url}`, {
             method: 'POST',
@@ -9,7 +8,7 @@ async function POST(url, sendData){
               },
               body: JSON.stringify(sendData)
         }).then((response) => {
-            resolve(response)
+            resolve(response.json())
         })
     })
 }

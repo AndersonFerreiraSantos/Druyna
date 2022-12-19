@@ -2,7 +2,7 @@ import { Container, AllItens, AllPatternsButtons, AllUserButtons , UserButtons, 
 
 import METADATA from '../metadata/Header'
 
-import ButtonHeader from '../../../components/button-header/component/ButtonHeader'
+import ButtonHeader from '../../../components/button/component/ButtonHeader'
 
 const Header = ({setExternalPage}) => {
     return (

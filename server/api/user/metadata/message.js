@@ -1,28 +1,38 @@
 const ERROR = {
     CREATE : {
          INVALID_EMAIL : {
-            type: 'invalid email',
+            error: true,
             codePrefix: 'auth',
             message: 'the email address is improperly formatted',
+
          },
          INVALID_PASSWORD : {
-            type: 'invalid password',
+            error: true,
             codePrefix: 'auth',
             message: 'the password must be a string with at least 6 characters',
          },
          EMAIL_EXISTS : {
-            type: 'email already exists',
+            error: true,
             codePrefix: 'auth',
             message: 'the email address is already in use by another account.',
          },
-
     },
 }
 
 const SUCCESS = {
     CREATE : {
         SUCCESSFULLY_CREATED : {
-           type: 'successfully created',
+           success: true,
+           codePrefix: 'auth',
+           message: 'user registered with successes',
+        },
+   },
+}
+
+const ALERT = {
+    CREATE : {
+        SUCCESSFULLY_CREATED : {
+           alert: true,
            codePrefix: 'auth',
            message: 'user registered with successes',
         },
@@ -31,3 +41,4 @@ const SUCCESS = {
 
 exports.ERROR = ERROR
 exports.SUCCESS = SUCCESS
+exports.ALERT = ALERT

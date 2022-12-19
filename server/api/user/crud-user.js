@@ -5,18 +5,19 @@ const COLLECTION = 'users'
 const MESSAGE = require('./metadata/message')
 
 async function createUser(sendData){
-    console.log(sendData)
     return new Promise((resolve, reject) => {
         DB.auth().createUser(sendData).then((result) => {
-            resolve({message: MESSAGE.SUCCESS.CREATE.SUCCESSFULLY_CREATED, displayName: result.displayName, email: result.email, uid: result.email })
+            resolve({...MESSAGE.SUCCESS.CREATE.SUCCESSFULLY_CREATED, displayName: result.displayName, email: result.email, uid: result.email })
         })
         .catch((error) => {
-            console.log(error, MESSAGE.ERROR.CREATE.INVALID_EMAIL)
             error.errorInfo.code == 'auth/invalid-email' ?  
             reject(MESSAGE.ERROR.CREATE.INVALID_EMAIL) : 
-            error.errorInfo.code == 'auth/invalid-password'?  
+            error.errorInfo.code == 'auth/invalid-password' ?  
             reject(MESSAGE.ERROR.CREATE.INVALID_PASSWORD) : 
+            error.errorInfo.code == 'auth/email-already-exists' ?  
+            reject(MESSAGE.ERROR.CREATE.EMAIL_EXISTS) : 
             reject (error.errorInfo)
+            console.log(error)
         });
     })
 }
@@ -48,6 +49,9 @@ async function deleteUid(sendData){
             resolve(result)})
     })
 }
+
+//new Error().stack
 exports.createUser = createUser
-exports.getUid = getUid
 exports.deleteUid = deleteUid
+exports.getUid = getUid
+
