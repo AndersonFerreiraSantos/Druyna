@@ -1,4 +1,5 @@
 const DB = require('firebase-admin')
+const FB = require('firebase/auth')
 const CRUD = require('./crud-user')
 const COLLECTION = 'users'
 
@@ -19,6 +20,17 @@ async function createUser(sendData){
             reject (error.errorInfo)
             console.log(error)
         });
+    })
+}
+
+async function authenticationUser(sendData){
+    console.log(sendData)
+    return new Promise((resolve, reject) => {
+        DB.auth().getUserByEmail(sendData)
+       
+        //createSessionCookie()
+        //generateSignInWithEmailLink()
+
     })
 }
 
@@ -52,6 +64,7 @@ async function deleteUid(sendData){
 
 //new Error().stack
 exports.createUser = createUser
+exports.authenticationUser = authenticationUser
 exports.deleteUid = deleteUid
 exports.getUid = getUid
 

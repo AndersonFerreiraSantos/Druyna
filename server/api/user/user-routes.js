@@ -10,6 +10,14 @@ router.post('/createUser', (request, response) => {
   })
 })
 
+router.get('/authenticationUser', (request, response) => {
+    FCCrud.authenticationUser(request.body).then((result) => {
+      response.json(result)
+  }).catch((error) => {
+    response.json(error)
+  })
+})
+
 
 router.get('/getUid', (request, response) => { 
         return new Promise((resolve, reject) => {

@@ -14,17 +14,15 @@ const UserRegister = () => {
 
     async function startRegister(){
         REQ.POST('/user/createUser', register).then((response) => {
-            console.log(response.message)
-            toast('🦄 Wow so easy!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                });
+            if(response.success){
+                toast.success(response.message);
+            }
+            if(response.error){
+                toast.error(response.message);
+            }
+            if(response.alert){
+                toast.warning(response.message);
+            }
         })
     }
 
@@ -37,7 +35,7 @@ const UserRegister = () => {
                 <Center><InputDefault placeholder={'password'} onChange = {(e) => {setRegister({...register, password: e.target.value})}} /></Center>
                 <Center><ButtonDefault textName={'confirm'} onClick = {() => {startRegister() } }/></Center>
             </Window>
-            <ToastContainer/>
+            <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss={false} draggable={false} pauseOnHover={false} theme="dark" />
         </Container>
     )
 }
