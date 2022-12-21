@@ -1,3 +1,4 @@
+//back
 import React, { useState} from "react"
 import { Container, Window, Title, Center } from '../css/UserRegister'
 
@@ -7,22 +8,29 @@ import 'react-toastify/dist/ReactToastify.css';
 import InputDefault from '../../../components/input/component/InputDefault'
 import { ButtonDefault } from "../../../components/button/component/ButtonDefault"
 
+//back
+import FCService from '../service/serviceUser'
+
+
+
 import REQ from '../../../services/request/request'
 const UserRegister = () => {
 
     const [register, setRegister] = useState({})
 
     async function startRegister(){
-        REQ.POST('/user/createUser', register).then((response) => {
-            if(response.success){
-                toast.success(response.message);
-            }
-            if(response.error){
-                toast.error(response.message);
-            }
-            if(response.alert){
-                toast.warning(response.message);
-            }
+        REQ.POST('/user/createUser', register).then((result) => {
+            FCService.createUser()
+
+            // if(result.success){
+            //     toast.success(result.message);
+            // }
+            // if(result.error){
+            //     toast.error(result.message);
+            // }
+            // if(result.alert){
+            //     toast.warning(result.message);
+            // }
         })
     }
 

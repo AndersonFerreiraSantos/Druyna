@@ -1,9 +1,16 @@
-const FCCrud = require('./crud-user')
+const FCCrud = require('../functions/crud')
 const router = require('express').Router()
-
 
 router.post('/createUser', (request, response) => {
     FCCrud.createUser(request.body).then((result) => {
+      response.json(result)
+  }).catch((error) => {
+    response.json(error)
+  })
+})
+
+router.post('/createConfigUsers', (request, response) => {
+    FCCrud.createConfigUsers(request.body).then((result) => {
       response.json(result)
   }).catch((error) => {
     response.json(error)
@@ -17,7 +24,6 @@ router.get('/authenticationUser', (request, response) => {
     response.json(error)
   })
 })
-
 
 router.get('/getUid', (request, response) => { 
         return new Promise((resolve, reject) => {

@@ -8,15 +8,16 @@ const admin = require('firebase-admin')
 
 const middlewaresPost = require('../src/middlewares/middlewares')
 
-//database
-let serviceAccount = require("../database/serviceAccountKey.json");
+let serviceAccount = require("../database/service-account-key.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
 app.use(cors())
-app.use(middlewaresPost.requestDate)
 app.use(express.json());
 app.use(defaultRoutes)
+
+app.use(middlewaresPost.requestDate)
+
 app.listen(port, () => {})
 
 

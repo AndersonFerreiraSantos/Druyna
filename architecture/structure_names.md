@@ -1,4 +1,4 @@
-NAMING NAME:
+# NAMING NAME:
     ROUTES:
         back:
             example: get_all_users

@@ -1,25 +1,31 @@
 const DB = require('firebase-admin')
-const FB = require('firebase/auth')
-const CRUD = require('./crud-user')
+const CRUD = require('../../../database/crud-firebase')
 const COLLECTION = 'users'
 
-const MESSAGE = require('./metadata/message')
+const MESSAGE = require('../metadata/message')
 
 async function createUser(sendData){
     return new Promise((resolve, reject) => {
         DB.auth().createUser(sendData).then((result) => {
-            resolve({...MESSAGE.SUCCESS.CREATE.SUCCESSFULLY_CREATED, displayName: result.displayName, email: result.email, uid: result.email })
+            resolve({...MESSAGE.SUCCESS.CREATE.SUCCESSFULLY_CREATED, displayName: result.displayName, email: result.email, uid: result.uid })
         })
         .catch((error) => {
-            error.errorInfo.code == 'auth/invalid-email' ?  
-            reject(MESSAGE.ERROR.CREATE.INVALID_EMAIL) : 
-            error.errorInfo.code == 'auth/invalid-password' ?  
-            reject(MESSAGE.ERROR.CREATE.INVALID_PASSWORD) : 
-            error.errorInfo.code == 'auth/email-already-exists' ?  
-            reject(MESSAGE.ERROR.CREATE.EMAIL_EXISTS) : 
+            error.errorInfo.code == 'auth/invalid-email' ?
+            reject(MESSAGE.ERROR.CREATE.INVALID_EMAIL) :
+            error.errorInfo.code == 'auth/invalid-password' ?
+            reject(MESSAGE.ERROR.CREATE.INVALID_PASSWORD) :
+            error.errorInfo.code == 'auth/email-already-exists' ?
+            reject(MESSAGE.ERROR.CREATE.EMAIL_EXISTS) :
             reject (error.errorInfo)
-            console.log(error)
         });
+    })
+}
+
+const createConfigUsers = async (sendData) => {
+    return new Promise((resolve) => {
+        CRUD.create(COLLECTION, sendData).then((result) => {
+            resolve(result)
+        })
     })
 }
 
@@ -27,7 +33,7 @@ async function authenticationUser(sendData){
     console.log(sendData)
     return new Promise((resolve, reject) => {
         DB.auth().getUserByEmail(sendData)
-       
+
         //createSessionCookie()
         //generateSignInWithEmailLink()
 
@@ -51,7 +57,7 @@ async function getUid(sendData){
                 resolve({error: result, message: 'error fetching uid'})
             }
         })
-            
+
     })
 }
 
@@ -64,6 +70,8 @@ async function deleteUid(sendData){
 
 //new Error().stack
 exports.createUser = createUser
+exports.createConfigUsers = createConfigUsers
+
 exports.authenticationUser = authenticationUser
 exports.deleteUid = deleteUid
 exports.getUid = getUid
