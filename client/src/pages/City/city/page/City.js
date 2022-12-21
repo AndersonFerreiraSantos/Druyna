@@ -1,9 +1,10 @@
-import { Container, Text } from '../css/City'
+import { Container } from '../css/City'
+import Chat from '../../../../chat/component/chat'
 
 const Clan = () => {
     return (
         <Container>
-            <Text>City</Text>
+            < Chat />
         </Container>
     )
 }

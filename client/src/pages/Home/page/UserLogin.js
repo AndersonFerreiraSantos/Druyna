@@ -1,6 +1,6 @@
 //front
 import React, { useState} from "react"
-import { Container, Window, Title, Center, Google } from '../css/UserLogin'
+import { Container, Window, Title, Center } from '../css/UserLogin'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import InputDefault from '../../../components/input/component/InputDefault'
 import { ButtonDefault } from "../../../components/button/component/ButtonDefault"
 
-//back
 import {GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword,sendPasswordResetEmail} from 'firebase/auth'
 import { auth } from '../../../database/firebase'
 
@@ -33,9 +32,9 @@ const UserLogin = () => {
                 window.location.reload();
             }
         }).catch((error) => {
-            if(error.message == 'Firebase: Error (auth/wrong-password).'){
+            if(error.message === 'Firebase: Error (auth/wrong-password).'){
                 toast.error('email or password Invalid');
-            }else if(error.message == 'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).'){
+            }else if(error.message === 'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).'){
                 toast.error('access to this account has been temporarily disabled due to many failed login attempts');
             }
         })

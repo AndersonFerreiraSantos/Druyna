@@ -41,9 +41,12 @@ function getAll(collection){
     })
 }
 
-function put(){
-    
+function getMessage(collection){
+    return new Promise((resolve, reject) => {
+        DB.firestore().collection(collection).orderBy('created', 'desc').limit(100)
+    })
 }
+
 
 exports.get = get
 exports.getAll = getAll

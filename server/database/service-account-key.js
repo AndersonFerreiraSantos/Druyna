@@ -1,4 +1,6 @@
-{
+require('dotenv').config()
+
+const SERVICE_ACCOUNT = {
     "type": "service_account",
     "project_id": "druyna-6262b",
     "private_key_id": "f52a0b603f2f0386b8a41bb32116c6d7d73aa8c7",
@@ -9,4 +11,6 @@
     "token_uri": "https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-yur07%40druyna-6262b.iam.gserviceaccount.com"
-}
+} 
+
+module.exports = SERVICE_ACCOUNT

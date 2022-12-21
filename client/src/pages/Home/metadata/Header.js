@@ -6,6 +6,10 @@ const PATTERNOFF = [
         onClick: 'Home'
     },
     {
+        title: 'home', 
+        onClick: 'Home'
+    },
+    {
         title: 'update', 
         onClick: 'Update'
     },
