@@ -9,10 +9,8 @@ import InputDefault from '../../../components/input/component/InputDefault'
 import { ButtonDefault } from "../../../components/button/component/ButtonDefault"
 
 //back
-import {GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, User} from 'firebase/auth'
+import {GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword,sendPasswordResetEmail} from 'firebase/auth'
 import { auth } from '../../../database/firebase'
-
-
 
 const UserLogin = () => {
     const [login, setLogin] = useState({})
@@ -41,6 +39,10 @@ const UserLogin = () => {
         })
     }
 
+    const recoverPassword = () => {
+        sendPasswordResetEmail(auth, login.email)
+    }
+
     return (
         <Container>
             <Window>
@@ -49,7 +51,8 @@ const UserLogin = () => {
                 <Center><InputDefault placeholder={'password'} onChange = {(e) => {setLogin({...login, password: e.target.value})}} /></Center>
                 <Center><ButtonDefault textName={'confirm'} onClick = {() => {startLogin(login) } }/></Center>
 
-             <ButtonDefault onClick ={()=> {googleLogin()}} textName={'Google'} />
+             <ButtonDefault onClick ={()=> {googleLogin()}} textName={'gogole'} />
+             <ButtonDefault onClick ={()=> {recoverPassword()}} textName={'recover password'} />
 
             </Window>
 
