@@ -4,13 +4,25 @@ import { auth } from './firebase'
 
 const getLoggerUser = async () => {
     return new Promise((resolve) => {
-        firebaseAuth.onAuthStateChanged(auth, (user) =>{
-            console.log(user)
-            resolve(user)
+            firebaseAuth.onAuthStateChanged(auth, (user) =>{
+                console.log(user)
+                resolve(user)
+        })
     })
+}
+
+const logout = async (setIsLogginOut, navigate) => {
+    return new Promise((resolve) => {
+        setIsLogginOut(true)
+            firebaseAuth.signOut(auth)
+            setIsLogginOut(false)
+            navigate('/')
+            window.location.reload();
+            resolve()
     })
 }
 
 export default {
-    getLoggerUser
+    getLoggerUser,
+    logout
 }

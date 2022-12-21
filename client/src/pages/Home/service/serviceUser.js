@@ -6,8 +6,6 @@ const createUser = (sendData) => {
     })
 }
 
-
-
 export default {
     createUser,
 }

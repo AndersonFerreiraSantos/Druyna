@@ -7,13 +7,14 @@ import AuthService from '../../database/authService'
 import Header from '../../pages/Home/page/Header'
 import Home from '../../pages/Home/page/Page'
 import Footer from '../../pages/Home/page/Footer'
-import City from '../../pages/City/city/component/City'
+import City from '../../pages/City/city/page/ Kingdom'
 import Loading from '../../components/loadding/component/Loading'
 
 
-function App() {
+function App() { 
 
   const [isLoadingLoggerUser, setIsLoadingLoggerUser] = useState(true)
+  const [internalPage, setInternalPage] = useState('')
   const [externalPage, setExternalPage] = useState('')
   const [user, setUser] = useState(null)
 
@@ -30,10 +31,11 @@ function App() {
     <>
       <div className='App'>
         {!isLoadingLoggerUser && <BrowserRouter>
-          <Header setExternalPage = {setExternalPage}/>
+          <Header setExternalPage = {setExternalPage} setInternalPage = {setInternalPage} user = {user} />
           <Routes>
-            <Route path='/' element={!user ? <Home externalPage = {externalPage} /> : <Navigate to ='/city' />} /> 
-            <Route path='/city' element = {user ? <City /> : <Navigate to = '/' /> } />
+            <Route path = '/' element = {<Navigate to = '/home' /> } />
+            <Route path='/home' element={!user ? <Home externalPage = {externalPage} /> : <Navigate to ='/city' />} /> 
+            <Route path='/city' element = {user ? <City internalPage = {internalPage} /> : <Navigate to = '/home' /> } />
           </Routes>
           <Footer />
         </BrowserRouter>}

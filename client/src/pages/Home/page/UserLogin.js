@@ -20,6 +20,7 @@ const UserLogin = () => {
 
         signInWithPopup(auth, provider).then((result) => {
             console.log(result)
+            window.location.reload();
         }).catch((error) => {
             console.log(error)
         })
@@ -29,6 +30,7 @@ const UserLogin = () => {
         signInWithEmailAndPassword(auth, login.email, login.password).then((result) => {
             if(result.operationType){
                 toast.success('Logado');
+                window.location.reload();
             }
         }).catch((error) => {
             if(error.message == 'Firebase: Error (auth/wrong-password).'){

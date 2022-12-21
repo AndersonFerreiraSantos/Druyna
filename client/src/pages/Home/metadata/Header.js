@@ -1,5 +1,6 @@
+import authService from "../../../database/authService"
 
-const PATTERN = [
+const PATTERNOFF = [
     {
         title: 'home', 
         onClick: 'Home'
@@ -14,7 +15,7 @@ const PATTERN = [
     },
 ]
 
-const USER = [
+const USEROFF = [
     {
         title: 'register', 
         onClick: 'UserRegister'
@@ -25,7 +26,39 @@ const USER = [
     },
 ]
 
-exports.PATTERN = PATTERN
-exports.USER = USER
+const PATTERNON= [
+    {
+        title: 'score', 
+        onClick: 'score'
+    },
+    {
+        title: 'clan', 
+        onClick: 'clan'
+    },
+    {
+        title: 'world', 
+        onClick: 'world'
+    },
+]
+
+const USERON = [
+    {
+        title: 'continent', 
+        onClick: 'continent'
+    },
+    {
+        title: '< logout', 
+        onClick: 'logout'
+    },
+]
+
+
+export default {
+    PATTERNOFF,
+    PATTERNON,
+    USEROFF,
+    USERON,
+}
+
 
 
