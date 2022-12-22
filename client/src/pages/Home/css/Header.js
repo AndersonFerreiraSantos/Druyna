@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+    position: fixed;
     z-index: 2;
     align-items: center;
     height: 5%;
@@ -10,7 +11,7 @@ export const Container = styled.div`
 
 export const AllItens = styled.div`
     display: flex;
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 5%;
 `

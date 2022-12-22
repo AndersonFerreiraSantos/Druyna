@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Container } from '../css/City'
+import { Container } from '../css/Kingdom'
 
 import authService from "../../../../database/authService"
 import { useNavigate } from "react-router-dom"
@@ -10,7 +10,7 @@ import World from '../../../general/page/World'
 import Score from "../../../general/page/Score"
 import Continent from "../../../general/page/Continent"
 import Clan from "../../../general/page/Clan"
-import City from '../page/City'
+import City from './Render'
 
 const Kingdom = ({internalPage}) => {
 

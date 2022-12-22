@@ -1,9 +1,6 @@
-import { Container } from '../css/City'
-import Chat from '../../../../chat/component/chat'
+import '../css/Render.css'
 
-import './style.css'
-
-const Clan = () => {
+const Render = () => {
 
     function bugDom () {
     const wrapper = document.querySelector(".wrapper"),
@@ -11,8 +8,8 @@ const Clan = () => {
 
     function onDrag({movementX, movementY}){
         console.log(movementX, movementY)
-        movementX = movementX /8
-        movementY = movementY /8
+        movementX = movementX /4
+        movementY = movementY /4
         let getStyle = window.getComputedStyle(wrapper);
         let leftVal = parseInt(getStyle.left);
         let topVal = parseInt(getStyle.top);
@@ -33,16 +30,21 @@ const Clan = () => {
     setTimeout(bugDom, 1)
 
     return (
-        <Container >
 
             <div class="wrapper"  >
-                <header>
-                </header>
+              <div class = 'center'>
+                <div class = 'sub'>
+                    <header>
+                        <div class= 'city'/>
+                        <img class = 'img' src ='https://www.researchgate.net/publication/332380173/figure/fig1/AS:746871924473858@1555079551834/Map-of-Africa-highlighting-countries.jpg' />
+                    </header>
+                    <div class = 'edification' onClick={() => console.log('edification')}></div>
+                  </div>
+                </div>
             </div>
-        </Container>
 
  
     )
 }
 
-export default Clan
+export default Render
