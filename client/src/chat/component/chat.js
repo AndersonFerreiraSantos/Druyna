@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { auth, databaseApp} from '../../database/firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -7,8 +7,9 @@ import {Client, OpenMessage, CloseMessage, ViewMessage, Title, Message, Image, T
 import { addDoc, collection, limit, orderBy, query, serverTimestamp } from 'firebase/firestore'
 
 const Chat = () => {
+    const dummy = useRef()
 
-    const [openMessage, setOpenMessage] = useState('')
+    const [openMessage, setOpenMessage] = useState('none')
 
     const messageRef = collection(databaseApp, "Message");
 
@@ -18,7 +19,6 @@ const Chat = () => {
 
     const [formValue, setFormValue] = useState('')
     const [user] = useAuthState(auth)
-
     const sendMessage = async (e) => {
         e.preventDefault()
         const {photoURL, uid} = auth.currentUser
@@ -28,15 +28,20 @@ const Chat = () => {
             photoURL,
             createdAt: serverTimestamp()
         })
+        dummy.current.scrollIntoView({behavior: 'smooth'})
     }
 
     function openClose(){
+        
         if(openMessage === 'none'){
-            setOpenMessage('')
+            setOpenMessage('');
+
         }else{
             setOpenMessage('none')
         }
     }
+
+
 
     return (
         <>        
@@ -51,15 +56,16 @@ const Chat = () => {
                         if(user.uid === item.uid){ conf.flex = 'row-reverse'; conf.color = 'blue'}
                         return(<Message style = {{flexDirection: conf.flex}}><Image src = {item.photoURL}></Image><Text style = {{backgroundColor: conf.color }}>{item.text} </Text></Message> )
                     })}
+                    <div ref = {dummy}></div>
                 </ViewMessage>
                 <form onSubmit={sendMessage}>
-                    <input type= 'text' value={formValue} onChange={e => setFormValue(e.target.value)}></input>
-                    <button>send</button>
+                    <input type= 'text' id = 'input' onChange={e => setFormValue(e.target.value)}></input>
+                    <button onClick={() => {let input = document.querySelector('#input'); input.value = ''}}>send</button>
                 </form>
 
                  </Client>
 
-            {openMessage ==='none' ? <OpenMessage onClick = { () => openClose()} /> : undefined}
+            {openMessage ==='none' ? <OpenMessage onClick = { () => {openClose(); }} /> : undefined}
         </>
     )
 }

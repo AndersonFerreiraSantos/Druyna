@@ -20,7 +20,6 @@ const Header = ({setExternalPage, setInternalPage, user}) => {
     }
 
     return (
-        <>
             <Container>
                 <AllItens>
 
@@ -63,9 +62,9 @@ const Header = ({setExternalPage, setInternalPage, user}) => {
                     </AllUserButtons>
 
                 </AllItens>
-            </Container>
             {isLogginOut && <Loading />}
-        </>
+
+        </Container>
     )
 }
 

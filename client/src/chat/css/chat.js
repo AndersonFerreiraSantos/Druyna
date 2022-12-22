@@ -58,11 +58,15 @@ export const ViewMessage = styled.div`
         background: #1e1e24;
     }
     ::-webkit-scrollbar-track {
-  background: #1e1e24;
-}
-::-webkit-scrollbar-thumb {
-  background: #6649b8;
-}
+         background: #1e1e24;
+    }
+    ::-webkit-scrollbar-thumb {
+        background:#555; 
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #6649b8;
+    }
+
 `
 
 

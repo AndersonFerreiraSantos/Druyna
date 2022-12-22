@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+    z-index: 2;
     align-items: center;
     height: 5%;
     width: 100%;
