@@ -30,7 +30,6 @@ const createConfigUsers = async (sendData) => {
 }
 
 async function authenticationUser(sendData){
-    console.log(sendData)
     return new Promise((resolve, reject) => {
         DB.auth().getUserByEmail(sendData)
 

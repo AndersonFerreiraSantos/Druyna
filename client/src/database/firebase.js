@@ -17,6 +17,7 @@ const app = initializeApp(firebase)
 const auth = getAuth(app, { persistence: browserLocalPersistence })
 
 const databaseApp = getFirestore(app)
+
 export {
   auth,
   app,

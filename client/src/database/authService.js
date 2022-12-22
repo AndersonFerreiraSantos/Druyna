@@ -5,7 +5,6 @@ import { auth } from './firebase'
 const getLoggerUser = async () => {
     return new Promise((resolve) => {
             firebaseAuth.onAuthStateChanged(auth, (user) =>{
-                console.log(user)
                 resolve(user)
         })
     })
