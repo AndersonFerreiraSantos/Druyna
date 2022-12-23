@@ -4,7 +4,7 @@ export const Client = styled.div`
     text-align: center;
     background-color: black;
     width: 400px;
-    height: 500px;
+    height: 530px;
     position: fixed;
     bottom: 5%;
     right: 0;
@@ -13,8 +13,8 @@ export const Client = styled.div`
 
 export const OpenMessage = styled.div`
 
-    bottom: 5%;
-    right: 0;
+    bottom: 6%;
+    right: 1%;
     position: fixed;
     background-color: green;
     width: 50px;
@@ -49,9 +49,7 @@ export const ViewMessage = styled.div`
     height: 450px;
     margin: 10px;
     margin-top: 20px;
-    flex-direction: column;
     overflow-y: scroll;
-    flex-direction: column;
 
     ::-webkit-scrollbar {
         width: 0.95rem;
@@ -86,4 +84,8 @@ export const Text =  styled.p`
     background-color: yellow;
     padding: 5px;
     border-radius: 10px;
+`
+
+export const SendMessage = styled.input`
+    width: 93%;
 `

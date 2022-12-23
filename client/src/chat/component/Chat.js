@@ -2,9 +2,9 @@ import { useRef, useState } from 'react'
 import { auth, databaseApp} from '../../database/firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {Client, OpenMessage, CloseMessage, ViewMessage, Title, Message, Image, Text} from '../css/chat'
+import { Client, OpenMessage, CloseMessage, ViewMessage, Title, Message, Image, Text, SendMessage} from '../css/Chat'
 
-import { addDoc, collection, limit, orderBy, query, serverTimestamp } from 'firebase/firestore'
+import { addDoc, collection, orderBy, query, serverTimestamp } from 'firebase/firestore' //limit
 
 const Chat = () => {
     const dummy = useRef()
@@ -13,7 +13,7 @@ const Chat = () => {
 
     const messageRef = collection(databaseApp, "Message");
 
-    const queryMessages = query(messageRef, orderBy("createdAt"), limit(25));
+    const queryMessages = query(messageRef, orderBy("createdAt"));//limit(25));
 
     const [messages] = useCollectionData(queryMessages, { idField: "id" }); //aaaaaaaaaa
 
@@ -51,7 +51,6 @@ const Chat = () => {
                 <ViewMessage>
                     
                     {messages && messages.map((item, i) => {
-                        console.log(user.uid, item.uid)
                         let conf = {}
                         if(user.uid === item.uid){ conf.flex = 'row-reverse'; conf.color = 'blue'}
                         return(<Message style = {{flexDirection: conf.flex}}><Image src = {item.photoURL}></Image><Text style = {{backgroundColor: conf.color }}>{item.text} </Text></Message> )
@@ -59,8 +58,8 @@ const Chat = () => {
                     <div ref = {dummy}></div>
                 </ViewMessage>
                 <form onSubmit={sendMessage}>
-                    <input type= 'text' id = 'input' onChange={e => setFormValue(e.target.value)}></input>
-                    <button onClick={() => {let input = document.querySelector('#input'); input.value = ''}}>send</button>
+                    <SendMessage type= 'text' id = 'input' onChange={e => setFormValue(e.target.value)}></SendMessage>
+                    <button style={{display: 'none'}} onClick={() => {let input = document.querySelector('#input'); input.value = ''}}>send</button>
                 </form>
 
                  </Client>

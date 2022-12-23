@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Container, Main, City, Edification} from '../css/Render.js';
 
+import Chat from '../../../../chat/component/Chat'
 import FIELDS from './field'
 
 function Render() {
@@ -39,8 +40,8 @@ function Render() {
     const onMouseMove = (e) => {
       if (!isClicked.current) return;
 
-      let nextX = e.clientX - coords.current.startX + coords.current.lastX;
-      let nextY = e.clientY - coords.current.startY + coords.current.lastY;
+      const nextX = e.clientX - coords.current.startX + coords.current.lastX;
+      const nextY = e.clientY - coords.current.startY + coords.current.lastY;
       box.style.top = `${nextY}px`;
       box.style.left = `${nextX}px`;
     }
@@ -65,101 +66,75 @@ function Render() {
     field.n = 'new'
     FIELDS.FIELDS[key] = field
 
-    let config
-    let positionLeft
-    let positionRight
-    let positionTop
-    let positionBottom
-
     function isEquivalent(a, b) {
       let aProps = Object.getOwnPropertyNames(a);
       let bProps = Object.getOwnPropertyNames(b);
-  
-      if (aProps.length != bProps.length) {
+
+      if (aProps.length !== bProps.length) {
           return false;
       }
-  
+
       for (let i = 0; i < aProps.length; i++) {
           let propName = aProps[i];
-  
+
           if (a[propName] !== b[propName]) {
               return false;
           }
       }
-  
+
       return true;
+
   }
 
-    if(field.config === 'left' || field.config === 'right') {
-      let left = Math.sign( field.left) //lados
-      let bottom = Math.sign( field.bottom)
+    let validateLeft = false
+    let validateRight = false
+    let validateTop = false
+    let validateBottom = false
 
-
-      if(left === -1) {
-        positionRight = -200 + field.left
-        config = 'left'
-      }else{
-        positionLeft = 200 + field.left
-        config = 'right'
-      } 
-      positionTop = bottom + 200
-      positionBottom = bottom - 200
-
-      FIELDS.FIELDS.push({left: positionLeft ? positionLeft : positionRight, bottom: field.bottom, characteristic: '+', type: 'ghost', config: config})
-      FIELDS.FIELDS.push({left: field.left,  bottom: positionTop, characteristic: '+', type: 'ghost', config: 'top'})
-      FIELDS.FIELDS.push({left: field.left,  bottom: positionBottom , characteristic: '+', type: 'ghost', config: 'bottom'})
-    }
-
-    if(field.config === 'top' || field.config === 'bottom') {
-      let bottom = Math.sign( field.bottom) //lados
-
-      console.log('>>>',bottom)
-      if(bottom === -1) {
-        positionBottom = -200 + field.bottom
-        config = 'bottom'
-      }else{
-        positionTop = 200 + field.bottom
-        config = 'top'
-      } 
-
-      let validateTop = false
       FIELDS.FIELDS.map((item) => {
-        if(((isEquivalent({bottom: item.bottom, left: item.left, }, {left: field.left + 200,  bottom: field.bottom}))) === true){validateTop = true}
+        if(((isEquivalent({bottom: item.bottom, left: item.left}, {left: field.left - 200 , bottom: field.bottom}))) === true){ validateLeft = true}
+        return validateLeft
       })
-      let validateBottom =false
+
       FIELDS.FIELDS.map((item) => {
-        if(((isEquivalent({bottom: item.bottom, left: item.left, }, {left: field.left,  bottom: positionTop ? positionTop : positionBottom}))) === true) {validateBottom = true}
+        if(((isEquivalent({bottom: item.bottom, left: item.left}, {left: field.left + 200,  bottom: field.bottom}))) === true) {validateRight = true}
+        return validateRight
       })
-      let validateRight = false
       
       FIELDS.FIELDS.map((item) => {
-        if(((isEquivalent({bottom: item.bottom, left: item.left, }, {left: field.left - 200 , bottom: field.bottom}))) === true) {validateRight = true}
+        if(((isEquivalent({bottom: item.bottom, left: item.left}, {left: field.left,  bottom: field.bottom + 200}))) === true) {validateTop = true}
+        return validateTop
       })
 
-      if(validateRight === false){FIELDS.FIELDS.push({left: field.left - 200 , bottom: field.bottom, characteristic: '+', type: 'ghost', config: config})}
-      if(validateTop === false){FIELDS.FIELDS.push({left: field.left + 200,  bottom: field.bottom, characteristic: '+', type: 'ghost', config: 'top'})}
-      if(validateBottom === false){FIELDS.FIELDS.push({left: field.left,  bottom: positionTop ? positionTop : positionBottom, characteristic: '+', type: 'ghost', config: 'bottom'})}
-    }
+      FIELDS.FIELDS.map((item) => {
+        if(((isEquivalent({bottom: item.bottom, left: item.left}, {left: field.left,  bottom: field.bottom -200}))) === true) {validateTop = true}
+        return validateTop
+      })
+      if(validateLeft === false){FIELDS.FIELDS.push({left: field.left - 200, bottom: field.bottom, characteristic: '', type: 'ghost', config: 'top'})}//left
+      if(validateRight === false){FIELDS.FIELDS.push({left: field.left + 200,  bottom: field.bottom, characteristic: '', type: 'ghost', config: 'top'})}//right
+      if(validateTop === false){FIELDS.FIELDS.push({left: field.left,  bottom: field.bottom + 200, characteristic: '', type: 'ghost', config: 'top'})}//top
+      if(validateBottom === false){FIELDS.FIELDS.push({left: field.left,  bottom: field.bottom -200, characteristic: '', type: 'ghost', config: 'top'})}//bottom
+
   }
+
   return (
     <Container>
       <Main ref={containerRef} className="main">
         <City ref={boxRef} className="box">
-          <Edification style ={{backgroundColor: 'green'}}>0</Edification>
           {FIELDS.FIELDS.map((field, key) => {
 
             let color = ''
             if(field.type === 'ghost') {
-              color = 'white'
+              color = 'rgb(166, 245, 245, 0.3)'
             }else{
-              color = 'red'
+              color = 'green'//
             }
-            return( 
-             <Edification onClick={field.type === 'ghost' ? () => newField(field, key) : undefined } style ={{backgroundColor: color, marginLeft: field.left, marginBottom: field.bottom}}>{field.characteristic}</Edification>
-            )
+
+            return( <Edification onClick={field.type === 'ghost' ? () => newField(field, key) : undefined } style ={{backgroundColor: color, marginLeft: field.left, marginBottom: field.bottom}}>{field.characteristic}</Edification> )
 
           })}
         </City>
+        <Chat />
       </Main>
     </Container>
   );
