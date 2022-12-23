@@ -60,16 +60,12 @@ function Render() {
     return cleanup;
   }, [])
 
-  useEffect(() => {
-    
-  }, [])
-
   function newField(field, key){
     field.type = 'field'
     field.n = 'new'
     FIELDS.FIELDS[key] = field
-    let config
 
+    let config
     let positionLeft
     let positionRight
     let positionTop
@@ -95,8 +91,8 @@ function Render() {
   }
 
     if(field.config === 'left' || field.config === 'right') {
-      let left = Math.sign( field.left) //lados//
-      let bottom = Math.sign( field.bottom) ////
+      let left = Math.sign( field.left) //lados
+      let bottom = Math.sign( field.bottom)
 
 
       if(left === -1) {
@@ -109,33 +105,24 @@ function Render() {
       positionTop = bottom + 200
       positionBottom = bottom - 200
 
-      //left right 
       FIELDS.FIELDS.push({left: positionLeft ? positionLeft : positionRight, bottom: field.bottom, characteristic: '+', type: 'ghost', config: config})
-      //top
       FIELDS.FIELDS.push({left: field.left,  bottom: positionTop, characteristic: '+', type: 'ghost', config: 'top'})
-      //bottom
-      FIELDS.FIELDS.push({left: field.left,  bottom: positionBottom , characteristic: '+', type: 'ghost', config: 'bootom'})
+      FIELDS.FIELDS.push({left: field.left,  bottom: positionBottom , characteristic: '+', type: 'ghost', config: 'bottom'})
     }
 
     if(field.config === 'top' || field.config === 'bottom') {
-      let left = Math.sign( field.left) //lados//
       let bottom = Math.sign( field.bottom) //lados
 
       console.log('>>>',bottom)
       if(bottom === -1) {
-        console.log('aaaaaaa', bottom)
         positionBottom = -200 + field.bottom
         config = 'bottom'
       }else{
-        console.log('bbbbbbbbb')
         positionTop = 200 + field.bottom
-        console.log(positionTop, field.bottom)
         config = 'top'
       } 
-      console.log(positionTop)
-      console.log(FIELDS.FIELDS)
 
-      let validateTop = false //
+      let validateTop = false
       FIELDS.FIELDS.map((item) => {
         if(((isEquivalent({bottom: item.bottom, left: item.left, }, {left: field.left + 200,  bottom: field.bottom}))) === true){validateTop = true}
       })
@@ -148,15 +135,11 @@ function Render() {
       FIELDS.FIELDS.map((item) => {
         if(((isEquivalent({bottom: item.bottom, left: item.left, }, {left: field.left - 200 , bottom: field.bottom}))) === true) {validateRight = true}
       })
-      console.log(validateTop, validateBottom, validateRight)
-      //left right //////
+
       if(validateRight === false){FIELDS.FIELDS.push({left: field.left - 200 , bottom: field.bottom, characteristic: '+', type: 'ghost', config: config})}
-      //top 
       if(validateTop === false){FIELDS.FIELDS.push({left: field.left + 200,  bottom: field.bottom, characteristic: '+', type: 'ghost', config: 'top'})}
-      //bottom
       if(validateBottom === false){FIELDS.FIELDS.push({left: field.left,  bottom: positionTop ? positionTop : positionBottom, characteristic: '+', type: 'ghost', config: 'bottom'})}
     }
-    
   }
   return (
     <Container>
@@ -174,10 +157,9 @@ function Render() {
             return( 
              <Edification onClick={field.type === 'ghost' ? () => newField(field, key) : undefined } style ={{backgroundColor: color, marginLeft: field.left, marginBottom: field.bottom}}>{field.characteristic}</Edification>
             )
+
           })}
         </City>
-        
-        
       </Main>
     </Container>
   );
