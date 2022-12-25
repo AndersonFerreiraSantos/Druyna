@@ -16,7 +16,7 @@ const Chat = () => {
     const queryMessages = query(messageRef, orderBy("createdAt"));//limit(25));
 
     const [messages] = useCollectionData(queryMessages, { idField: "id" }); //aaaaaaaaaa
-
+    
     const [formValue, setFormValue] = useState('')
     const [user] = useAuthState(auth)
     const sendMessage = async (e) => {
@@ -50,7 +50,7 @@ const Chat = () => {
                 <Title>message</Title>
                 <ViewMessage>
                     
-                    {messages && messages.map((item, i) => {
+                    {messages && messages.map((item) => {
                         let conf = {}
                         if(user.uid === item.uid){ conf.flex = 'row-reverse'; conf.color = 'blue'}
                         return(<Message style = {{flexDirection: conf.flex}}><Image src = {item.photoURL}></Image><Text style = {{backgroundColor: conf.color }}>{item.text} </Text></Message> )
