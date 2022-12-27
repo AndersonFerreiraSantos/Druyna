@@ -1,5 +1,5 @@
 const DB = require('firebase-admin')
-const CRUD = require('../../../database/crud-firebase')
+const CRUD = require('../../../database/firestore/crud')
 const COLLECTION = 'Message'
 
 const MESSAGE = require('../metadata/message')

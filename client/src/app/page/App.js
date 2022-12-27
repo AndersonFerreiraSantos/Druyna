@@ -10,6 +10,9 @@ import Footer from '../../pages/Home/page/Footer'
 import City from '../../pages/City/city/page/ Kingdom'
 import Loading from '../../components/loadding/component/Loading'
 
+import Context from '../context/context'
+
+import fieldService from '../../services/fields/fieldService'
 
 function App() { 
 
@@ -17,10 +20,19 @@ function App() {
   const [internalPage, setInternalPage] = useState('')
   const [externalPage, setExternalPage] = useState('')
   const [user, setUser] = useState(null)
+  const [fields, setFields] = useState(null)
+
+
 
   useEffect(() => {
+    setIsLoadingLoggerUser(true)
+
     AuthService.getLoggerUser().then((user) => {
-      setIsLoadingLoggerUser(false)
+      fieldService.getFields().then((result) => {
+        setFields(result)
+        setIsLoadingLoggerUser(false)
+      })
+
       setUser(user)
     }).catch(() => {
       setIsLoadingLoggerUser(false)
@@ -30,15 +42,20 @@ function App() {
   return (
     <>
       <div className='App'>
-        {!isLoadingLoggerUser && <BrowserRouter>
-          <Header setExternalPage = {setExternalPage} setInternalPage = {setInternalPage} user = {user} />
-          <Routes>
-            <Route path = '/' element = {<Navigate to = '/home' /> } />
-            <Route path='/home' element={!user ? <Home externalPage = {externalPage} /> : <Navigate to ='/city' />} /> 
-            <Route path='/city' element = {user ? <City internalPage = {internalPage} /> : <Navigate to = '/home' /> } />
-          </Routes>
-          <Footer />
-        </BrowserRouter>}
+        {!isLoadingLoggerUser && 
+          <Context.Provider value={{user, setUser, fields, setFields}} >
+          <BrowserRouter>
+            <Header setExternalPage = {setExternalPage} setInternalPage = {setInternalPage} user = {user} />
+              <Routes>
+                <Route path = '/' element = {<Navigate to = '/home' /> } />
+                <Route path='/home' element={!user ? <Home externalPage = {externalPage} /> : <Navigate to ='/city' />} /> 
+                <Route path='/city' element = {user ? <City internalPage = {internalPage} /> : <Navigate to = '/home' /> } />
+              </Routes>
+            <Footer />
+          </BrowserRouter>
+        </Context.Provider>
+        }
+        
     </div>
     {isLoadingLoggerUser && <Loading />}
     </>

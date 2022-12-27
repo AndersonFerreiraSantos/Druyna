@@ -1,5 +1,4 @@
 import * as firebaseAuth from 'firebase/auth'
-import { resolvePath } from 'react-router-dom'
 import { auth } from './firebase'
 
 const getLoggerUser = async () => {
@@ -12,16 +11,16 @@ const getLoggerUser = async () => {
 
 const logout = async (setIsLogginOut, navigate) => {
     return new Promise((resolve) => {
-        setIsLogginOut(true)
             firebaseAuth.signOut(auth)
-            setIsLogginOut(false)
             navigate('/')
             window.location.reload();
             resolve()
     })
 }
 
-export default {
+const method = {
     getLoggerUser,
     logout
 }
+
+export default method

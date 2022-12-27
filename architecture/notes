@@ -68,3 +68,16 @@ Comandos:
 
         Por esta:
         app.engine('handlebars', exphbs.engine())
+
+MongoDB: 
+    busca de tabelas: show dbs
+
+criar:
+use 'nome'
+
+insert:
+    db.Fields.unsertOne({ name: 'anderson', age: 25})
+
+
+
+criado Fields

@@ -1,4 +1,3 @@
-import React from "react";
 import { Container } from '../css/Page'
 
 import UserLogin from "./UserLogin";
@@ -9,7 +8,6 @@ import Home from "./Home";
 import Update from "./Update";
 
 const Page = ({externalPage}) => {
-
     return(
         <Container>
             {externalPage === 'UserRegister' ? <UserRegister /> :

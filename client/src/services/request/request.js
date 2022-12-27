@@ -7,8 +7,8 @@ async function POST(url, sendData){
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify(sendData)
-        }).then((response) => {
-            resolve(response.json())
+        }).then((result) => {
+            resolve(result.json())
         })
     })
 }
@@ -21,14 +21,16 @@ async function GET(url){
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-        }).then((response) => {
-            resolve(response.json())
+        }).then((result) => {
+            resolve(result.json())
         })
     })
 }
 
 
-export default {
+const method = {
     POST,
     GET,
 }
+
+export default method

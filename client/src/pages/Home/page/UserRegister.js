@@ -2,7 +2,7 @@
 import React, { useState} from "react"
 import { Container, Window, Title, Center } from '../css/UserRegister'
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import InputDefault from '../../../components/input/component/InputDefault'

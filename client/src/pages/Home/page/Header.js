@@ -6,18 +6,9 @@ import METADATA from '../metadata/Header'
 import ButtonHeader from '../../../components/button/component/ButtonHeader'
 import Loading from "../../../components/loadding/component/Loading"
 
-import { useNavigate } from "react-router-dom"
-import authService from "../../../database/authService"
-
 const Header = ({setExternalPage, setInternalPage, user}) => {
 
-    const [isLogginOut, setIsLogginOut] = useState(false)
-
-    const navigate = useNavigate() 
-
-    function logout(){
-        authService.logout(setIsLogginOut, navigate)
-    }
+    const [isLogginOut] = useState(false)
 
     return (
             <Container>
