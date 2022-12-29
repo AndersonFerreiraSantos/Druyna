@@ -2,20 +2,20 @@ const { ObjectID } = require('bson')
 const connection = require('../../../../database/mongo/connection')
 
 class Field {
-    constructor(bottom, left, characteristic, type){
+    constructor(left, bottom, characteristic, type){
         this._characteristic = characteristic,
         this._bottom = bottom,
         this._left = left,
         this._type = type
     }
 
-    async save( bottom, left, characteristic, type ){
+    async save( left, bottom, characteristic, type ){
         return new Promise((resolve, reject) => {
             const field = connection.db().collection('Fields').insertOne({
-                characteristic: characteristic ? characteristic : this._characteristic,
-                bottom: bottom ? bottom : this._bottom,
-                left: left ? left : this._left,
-                type: type ? type : this._type
+                characteristic: characteristic,
+                bottom: bottom,
+                left: left,
+                type: type,
             })
             resolve(field) 
         })
@@ -31,7 +31,7 @@ class Field {
         })
     }
 
-    delete(receiveData){
+    async delete(receiveData){
         const {id} = receiveData
         
         return new Promise((resolve, reject) => {
@@ -42,18 +42,27 @@ class Field {
         })
     }
 
-    update(receiveData){
-        const { id, left, bottom, characteristic, type } = (receiveData)
-
-        console.log(id, left, bottom, characteristic, type )
-
-        const newValues = { $set: {left: left, bottom: bottom, characteristic: characteristic, type: type } }
+    async update(_id, bottom, left, characteristic, type){
+        const newValues = { $set: {left: left, bottom: bottom, characteristic: characteristic,type: type } }
         return new Promise((resolve, reject) => {
-            connection.db().collection("Fields").updateOne({id:id, bottom: bottom, left: left}, newValues, (err, res) => {
+            connection.db().collection("Fields").updateOne({bottom: bottom, left: left}, newValues, (err, res) => {
                 if (err) throw err;
                 resolve(res)
               });
         })
+    }
+
+    async create(){
+        return new Promise((resolve, reject) => {
+            const field = connection.db().collection('Fields').insertOne({
+                characteristic: this._characteristic ,
+                bottom: this._bottom,
+                left: this._left,
+                type: this._type,
+            })
+            resolve(field) 
+        })
+
     }
 }
 

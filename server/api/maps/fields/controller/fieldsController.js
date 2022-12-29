@@ -5,68 +5,74 @@ const { compareObjects } = require('../../../../util/util')
 
 module.exports = class FieldController {
 
-    // static newField(require, response) {
-    //     const { bottom, left, characteristic, type } = require.body
-    //     const field = new Field(bottom, left, characteristic, type)
+    static initialFields(require, response) {
+        const { left, bottom, characteristic, type } = require.body
+        const field = new Field(left, bottom, characteristic, type)
 
-    //     field.save()
-    // }
+        field.create().then((result) => {
+            response.json(result) 
+        })
+    }
 
     static async newField(require, response) {
-        const { bottom, left, characteristic, type } = require.body
-
-        console.log(bottom, left,)
+        const { _id, bottom, left, characteristic, type } = require.body
 
         const field = new Field()
+
+        field.update(_id, bottom, left, characteristic, 'field' )
 
         let fields 
 
         await field.get().then((result) => {
             fields = result
         })
-
-        console.log(fields)
-
+2
         let statusLeft = false
+        let statusRight = false
+        let statusTop = false
+        let statusBottom = false
+        await validate()
 
-        await validateLeft()
+       async function validate(){
 
-            async function validateLeft(){
             fields.map((item) => {
-                console.log({left: item.left, bottom: item.bottom, }, {left: left, bottom: bottom})
-                compareObjects({bottom: item.bottom, left: item.left}, {left: left, bottom: bottom}).then((result) => {
-                    if(result === true){statusLeft = true}
+                compareObjects({bottom: item.bottom, left: item.left}, {left: left - 500, bottom}).then((result) => {
+                    if(result === true){ statusLeft = true }
                 })
             })
+
+            fields.map((item) => {
+                compareObjects({bottom: item.bottom, left: item.left}, {left: left + 500, bottom}).then((result) => {
+                    if(result === true){ statusRight = true }
+                })
+            })
+
+            fields.map((item) => {
+                compareObjects({bottom: item.bottom, left: item.left}, {left, bottom: bottom + 500}).then((result) => {
+                    if(result === true){ statusTop = true }
+                })
+            })
+
+            fields.map((item) => {
+                compareObjects({bottom: item.bottom, left: item.left}, {left, bottom: bottom - 500}).then((result) => {
+                    if(result === true){ statusBottom = true }
+                })
+            })
+
         }
 
-            console.log(statusLeft)
+        let newFields
 
-        //     let validateRight = false
-        //     let validateTop = false
-        //     let validateBottom = false
-    
-        //   fields.map((item) => {
-        //     if(((compareObjects({bottom: item.bottom, left: item.left}, {left: left + 200,  bottom: bottom}))) === true) {validateRight = true}
-        //     return validateRight
-        //   })
-          
-        //   fields.map((item) => {
-        //     if(((compareObjects({bottom: item.bottom, left: item.left}, {left: left,  bottom: bottom + 200}))) === true) {validateTop = true}
-        //     return validateTop
-        //   })
-    
-        //   fields.map((item) => {
-        //     if(((compareObjects({bottom: item.bottom, left: item.left}, {left: left,  bottom: bottom -200}))) === true) {validateBottom = true}
-        //     return validateBottom
-        //   })
-    
-            // if(validateLeft === false){field.save( left - 200,bottom, '','ghost').then((result) => { console.log(result)})}//left
-            // if(validateRight === false){field.save( left + 200, bottom, '','ghost').then((result) => { console.log(result)})}//right
-            // if(validateBottom === false){field.save( left, bottom - 200, '','ghost').then((result) => { console.log(result)})}//top
-            // if(validateTop === false){field.save( left, bottom + 200, '','ghost').then((result) => { console.log(result)})}//bottom
+        if(statusLeft === false){ await field.save( left -500, bottom, '','ghost')}//left
+        if(statusRight === false){ await field.save( left + 500, bottom, '','ghost')}//right
+        if(statusBottom === false){ await field.save( left, bottom - 500, '','ghost')}//top
+        if(statusTop === false){ await field.save( left, bottom + 500, '','ghost')}//bottom
 
-
+        
+        await field.get().then((result) => {
+            newFields = result
+        })
+        response.json(newFields)
     }
 
     static getFields(require, response) {
@@ -101,24 +107,12 @@ module.exports = class FieldController {
             let deletedCount = 0
                 allFields.map((item) => {
                     field.delete({id:item._id.toString()}).then((result) => {
-                        console.log(deletedCount, allFields.lenght)
                         if(deletedCount >= result.lenght){
                             response.json({deletedCount: deletedCount})
                         }
                 })
                 
             })
-
-
-
-            // result.map((item) => {
-            //     console.log({id:item._id.toString()})
-            //     field.delete('63ab64b364ddfb8fd99c7395').then((result) => {
-
-            //         console.log(result)
-
-            //     })
-            // })
         })
     }
 }

@@ -1,16 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Container, Main, City, Edification} from '../css/Render.js';
-import { collection, setDoc, doc, query, orderBy} from 'firebase/firestore' //limit
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { databaseApp } from '../../../../database/firebase'
-
-import Chat from '../../../../chat/component/Chat'
 
 import fieldService from '../../../../services/fields/fieldService'
 import context from '../../../../app/context/context.js';
 
 function Render() {
-    const {setFields, fields, user, setUser} = useContext(context)
+    const {setFields, fields } = useContext(context)
 
   const containerRef = useRef(null);
   const boxRef = useRef(null);
@@ -66,15 +61,11 @@ function Render() {
     return cleanup;
   }, [])
 
-
-
   function newField(field){
-    console.log(field)
     fieldService.newField(field).then((result) => {
-      console.log(result)
+      setFields(result)
     })
   }
-
 
   return (
     <Container>
