@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Container, Main, City, Edification} from '../css/Render.js';
+import React, { useContext, useEffect, useRef } from 'react';
+import { Container, Main, City } from '../css/Render.js';
 
 import fieldService from '../../../../services/fields/fieldService'
 import context from '../../../../app/context/context.js';
 
+import Field from '../../../../components/field/componet/Field.js';
+
 function Render() {
-    const {setFields, fields } = useContext(context)
+    const { fields } = useContext(context)
 
   const containerRef = useRef(null);
   const boxRef = useRef(null);
@@ -61,11 +63,7 @@ function Render() {
     return cleanup;
   }, [])
 
-  function newField(field){
-    fieldService.newField(field).then((result) => {
-      setFields(result)
-    })
-  }
+
 
   return (
     <Container>
@@ -80,7 +78,7 @@ function Render() {
             }else{
               color = 'green'
             }
-            return( <Edification onClick={field.type === 'ghost' ? () => newField(field) : undefined }  style ={{backgroundColor: color, marginLeft: field.left, marginBottom: field.bottom}}>{field.characteristic}</Edification> )
+            return( <Field field = {field} >{field.characteristic}</Field> )
 
           })}
         </City>

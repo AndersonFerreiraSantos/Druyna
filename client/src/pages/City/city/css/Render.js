@@ -26,14 +26,10 @@ export const City = styled.div`
   `
 
 export const Edification =  styled.div`
-  background-color: black;
   height: 500px;
   width: 500px;
   top: 0; bottom: 0;
   left: 0; right: 0;
   margin: auto;
-  float: left;
-  text-align: center;
-  font-size: 120px;
   position: absolute;
 `
