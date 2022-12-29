@@ -27,10 +27,26 @@ async function GET(url){
     })
 }
 
+async function PUT(url, sendData){
+    return new Promise((resolve) => {
+        fetch(`http://localhost:8080${url}`, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(sendData)
+        }).then((result) => {
+            resolve(result.json())
+        })
+    })
+}
+
 
 const method = {
     POST,
     GET,
+    PUT,
 }
 
 export default method

@@ -1,3 +1,4 @@
+const { ObjectID } = require('bson')
 const connection = require('../../../../database/mongo/connection')
 
 class Field {
@@ -8,20 +9,20 @@ class Field {
         this._type = type
     }
 
-    save(){
+    async save( bottom, left, characteristic, type ){
         return new Promise((resolve, reject) => {
             const field = connection.db().collection('Fields').insertOne({
-                characteristic: this._characteristic,
-                bottom: this._bottom,
-                left: this._left,
-                type: this._type
+                characteristic: characteristic ? characteristic : this._characteristic,
+                bottom: bottom ? bottom : this._bottom,
+                left: left ? left : this._left,
+                type: type ? type : this._type
             })
             resolve(field) 
         })
 
     }
 
-    get(){
+    async get(){
         return new Promise((resolve, reject) => {
             connection.db().collection("Fields").find({}).toArray((error,result) => {
                 if(error) reject(error)
@@ -30,12 +31,28 @@ class Field {
         })
     }
 
-    delete(id){
+    delete(receiveData){
+        const {id} = receiveData
+        
         return new Promise((resolve, reject) => {
-            connection.db().collection("Fields").deleteOne({ id: id },(error, result) => {
+            connection.db().collection("Fields").deleteOne({ _id: ObjectID(id) },(error, result) => {
                 if(error) reject(error)
                 resolve(result)
             });
+        })
+    }
+
+    update(receiveData){
+        const { id, left, bottom, characteristic, type } = (receiveData)
+
+        console.log(id, left, bottom, characteristic, type )
+
+        const newValues = { $set: {left: left, bottom: bottom, characteristic: characteristic, type: type } }
+        return new Promise((resolve, reject) => {
+            connection.db().collection("Fields").updateOne({id:id, bottom: bottom, left: left}, newValues, (err, res) => {
+                if (err) throw err;
+                resolve(res)
+              });
         })
     }
 }

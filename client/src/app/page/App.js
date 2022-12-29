@@ -42,8 +42,8 @@ function App() {
   return (
     <>
       <div className='App'>
-        {!isLoadingLoggerUser && 
-          <Context.Provider value={{user, setUser, fields, setFields}} >
+        { !isLoadingLoggerUser && 
+        <Context.Provider value={{user, setUser, fields, setFields}} >
           <BrowserRouter>
             <Header setExternalPage = {setExternalPage} setInternalPage = {setInternalPage} user = {user} />
               <Routes>
@@ -53,8 +53,7 @@ function App() {
               </Routes>
             <Footer />
           </BrowserRouter>
-        </Context.Provider>
-        }
+        </Context.Provider> }
         
     </div>
     {isLoadingLoggerUser && <Loading />}

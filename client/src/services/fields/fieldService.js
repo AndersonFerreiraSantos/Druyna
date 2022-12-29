@@ -17,16 +17,19 @@ const newField = (sednData) => {
 }
 
 const updateField = (sendData) => {
+    console.log(sendData)
     return new Promise((resolve) => {
-        REQ.POST('/user/update_field', sendData).then((result) => {
+        REQ.PUT('/field/update_field', sendData).then((result) => {
             resolve(result)
         })
     })
 }
 
+
 const method = {
     getFields,
-    newField
+    newField,
+    updateField
 }
 
 export default method

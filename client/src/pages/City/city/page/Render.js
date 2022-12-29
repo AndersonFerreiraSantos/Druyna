@@ -6,17 +6,11 @@ import { databaseApp } from '../../../../database/firebase'
 
 import Chat from '../../../../chat/component/Chat'
 
+import fieldService from '../../../../services/fields/fieldService'
 import context from '../../../../app/context/context.js';
-import fieldsService from '../../../../services/fields/fieldService'
 
 function Render() {
-    const {fields, user, setUser} = useContext(context)
-
-    useEffect(() => {
-      console.log(fields)
-
-    }, [fields])
-
+    const {setFields, fields, user, setUser} = useContext(context)
 
   const containerRef = useRef(null);
   const boxRef = useRef(null);
@@ -72,63 +66,13 @@ function Render() {
     return cleanup;
   }, [])
 
-  function validateField(a, b) {
-    let aProps = Object.getOwnPropertyNames(a);
-    let bProps = Object.getOwnPropertyNames(b);
 
-    if (aProps.length !== bProps.length) {
-        return false;
-    }
 
-    for (let i = 0; i < aProps.length; i++) {
-        let propName = aProps[i];
-
-        if (a[propName] !== b[propName]) {
-            return false;
-        }
-    }
-
-    return true;
-  }
-
-  function newField(field, key){
-    console.log(field, key)
-
-    field.type = 'field'
-    field.n = 'new'
-
-    let validateLeft = false
-    let validateRight = false
-    let validateTop = false
-    let validateBottom = false
-
-      fields.map((item) => {
-        if(((validateField({bottom: item.bottom, left: item.left}, {left: field.left - 200 , bottom: field.bottom}))) === true){ validateLeft = true}
-        return validateLeft
-      })
-
-      fields.map((item) => {
-        if(((validateField({bottom: item.bottom, left: item.left}, {left: field.left + 200,  bottom: field.bottom}))) === true) {validateRight = true}
-        return validateRight
-      })
-      
-      fields.map((item) => {
-        if(((validateField({bottom: item.bottom, left: item.left}, {left: field.left,  bottom: field.bottom + 200}))) === true) {validateTop = true}
-        return validateTop
-      })
-
-      fields.map((item) => {
-        if(((validateField({bottom: item.bottom, left: item.left}, {left: field.left,  bottom: field.bottom -200}))) === true) {validateBottom = true}////
-        return validateBottom
-      })
-
-      if(validateLeft === false){fieldsService.newField({left: field.left - 200, bottom: field.bottom, characteristic: '', type: 'ghost', config: 'top'})}//left
-      if(validateRight === false){fieldsService.newField({left: field.left + 200,  bottom: field.bottom, characteristic: '', type: 'ghost', config: 'top'})}//right
-      if(validateBottom === false){fieldsService.newField({left: field.left,  bottom: field.bottom - 200, characteristic: '', type: 'ghost', config: 'top'})}//top
-      if(validateTop === false){fieldsService.newField({left: field.left,  bottom: field.bottom + 200, characteristic: '', type: 'ghost', config: 'top'})}//bottom
-
-      
-      console.log(validateLeft, validateRight, validateTop, validateBottom)
+  function newField(field){
+    console.log(field)
+    fieldService.newField(field).then((result) => {
+      console.log(result)
+    })
   }
 
 
@@ -145,7 +89,7 @@ function Render() {
             }else{
               color = 'green'
             }
-            return( <Edification onClick={field.type === 'ghost' ? () => newField(field, key) : undefined }  style ={{backgroundColor: color, marginLeft: field.left, marginBottom: field.bottom}}>{field.characteristic}</Edification> )
+            return( <Edification onClick={field.type === 'ghost' ? () => newField(field) : undefined }  style ={{backgroundColor: color, marginLeft: field.left, marginBottom: field.bottom}}>{field.characteristic}</Edification> )
 
           })}
         </City>
