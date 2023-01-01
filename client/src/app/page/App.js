@@ -10,6 +10,8 @@ import Footer from '../../pages/Home/page/Footer'
 import City from '../../pages/City/city/page/ Kingdom'
 import Loading from '../../components/loadding/component/Loading'
 
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import Context from '../context/context'
 
 import fieldService from '../../services/fields/fieldService'
@@ -41,22 +43,25 @@ function App() {
 
   return (
     <>
+        <DndProvider backend={HTML5Backend} >
+
       <div className='App'>
         { !isLoadingLoggerUser && 
-        <Context.Provider value={{user, setUser, fields, setFields}} >
-          <BrowserRouter>
-            <Header setExternalPage = {setExternalPage} setInternalPage = {setInternalPage} user = {user} />
-              <Routes>
-                <Route path = '/' element = {<Navigate to = '/home' /> } />
-                <Route path='/home' element={!user ? <Home externalPage = {externalPage} /> : <Navigate to ='/city' />} /> 
-                <Route path='/city' element = {user ? <City internalPage = {internalPage} /> : <Navigate to = '/home' /> } />
-              </Routes>
-            <Footer />
-          </BrowserRouter>
-        </Context.Provider> }
-        
+          <Context.Provider value={{user, setUser, fields, setFields}} >
+            <BrowserRouter>
+              <Header setExternalPage = {setExternalPage} setInternalPage = {setInternalPage} user = {user} />
+                <Routes>
+                  <Route path = '/' element = {<Navigate to = '/home' /> } />
+                  <Route path='/home' element={!user ? <Home externalPage = {externalPage} /> : <Navigate to ='/city' />} /> 
+                  <Route path='/city' element = {user ? <City internalPage = {internalPage} /> : <Navigate to = '/home' /> } />
+                </Routes>
+              <Footer />
+            </BrowserRouter>
+          </Context.Provider> }
     </div>
     {isLoadingLoggerUser && <Loading />}
+    </DndProvider>
+
     </>
   );
 }

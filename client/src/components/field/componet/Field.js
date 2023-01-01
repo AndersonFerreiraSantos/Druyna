@@ -1,7 +1,9 @@
-import { Container, Slot } from '../css/Field'
+import { Container } from '../css/Field'
 import fieldService from '../../../services/fields/fieldService'
 import React, { useContext } from 'react';
 import context from '../../../app/context/context';
+
+import Slot from '../../slot/component/Slot';
 
 const Field = ({field}) => {
     const { setFields } = useContext(context)
@@ -11,7 +13,6 @@ const Field = ({field}) => {
     if(type === "ghost") {
       color = 'rgb(166, 245, 245, 0.3)'
     }else{
-        console.log(type)
       color = 'green'
     }
 
@@ -20,38 +21,17 @@ const Field = ({field}) => {
           setFields(result)
         })
       }
-    console.log(left, bottom, type, characteristic )
     return (
         <Container left = {left} bottom = {bottom} color = {color} onClick = {field.type === 'ghost' ? () => newField(field) : undefined } >
-            {type === 'field' ?    
-           <>
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot />
-            <Slot /> 
-           </>
-         : undefined}
+            <>
+            {
+              field?.slots?.map((item) => {
+                return(
+                <Slot id = {item.id}/>
+                )
+              })
+         }
+         </>
         </Container>
     )
 }

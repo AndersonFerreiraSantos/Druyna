@@ -9,13 +9,14 @@ class Field {
         this._type = type
     }
 
-    async save( left, bottom, characteristic, type ){
+    async save( left, bottom, characteristic, type, slots ){
         return new Promise((resolve, reject) => {
             const field = connection.db().collection('Fields').insertOne({
                 characteristic: characteristic,
                 bottom: bottom,
                 left: left,
                 type: type,
+                slots: slots
             })
             resolve(field) 
         })
@@ -42,8 +43,8 @@ class Field {
         })
     }
 
-    async update(_id, bottom, left, characteristic, type){
-        const newValues = { $set: {left: left, bottom: bottom, characteristic: characteristic,type: type } }
+    async update(_id, bottom, left, characteristic, type, slots){
+        const newValues = { $set: {left: left, bottom: bottom, characteristic: characteristic,type: type, slots: slots} }
         return new Promise((resolve, reject) => {
             connection.db().collection("Fields").updateOne({bottom: bottom, left: left}, newValues, (err, res) => {
                 if (err) throw err;

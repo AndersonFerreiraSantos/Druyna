@@ -1,7 +1,9 @@
 const { json } = require('express')
 const Field =  require('../models/fieldModel')
 
+const CONFIG = require('../metadata/metadata')
 const { compareObjects } = require('../../../../util/util')
+const { ObjectID } = require('bson')
 
 module.exports = class FieldController {
 
@@ -19,18 +21,19 @@ module.exports = class FieldController {
 
         const field = new Field()
 
-        field.update(_id, bottom, left, characteristic, 'field' )
+        field.update(_id, bottom, left, characteristic, 'field', CONFIG.SLOT)
 
         let fields 
 
         await field.get().then((result) => {
             fields = result
         })
-2
+
         let statusLeft = false
         let statusRight = false
         let statusTop = false
         let statusBottom = false
+
         await validate()
 
        async function validate(){
@@ -63,10 +66,10 @@ module.exports = class FieldController {
 
         let newFields
 
-        if(statusLeft === false){ await field.save( left -500, bottom, '','ghost')}//left
-        if(statusRight === false){ await field.save( left + 500, bottom, '','ghost')}//right
-        if(statusBottom === false){ await field.save( left, bottom - 500, '','ghost')}//top
-        if(statusTop === false){ await field.save( left, bottom + 500, '','ghost')}//bottom
+        if(statusLeft === false){ await field.save( left -500, bottom, '','ghost' )}//left
+        if(statusRight === false){ await field.save( left + 500, bottom, '','ghost' )}//right
+        if(statusBottom === false){ await field.save( left, bottom - 500, '','ghost' )}//top
+        if(statusTop === false){ await field.save( left, bottom + 500, '','ghost' )}//bottom
 
         
         await field.get().then((result) => {
@@ -85,8 +88,6 @@ module.exports = class FieldController {
 
     static deleteField(require, response) {
         const field = new Field()
-
-        console.log(require)
 
         field.delete(require.body).then((result) => {
             response.json(result)

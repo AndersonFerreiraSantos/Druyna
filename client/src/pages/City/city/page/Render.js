@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Container, Main, City } from '../css/Render.js';
 
 import fieldService from '../../../../services/fields/fieldService'
 import context from '../../../../app/context/context.js';
-
+import Nav from '../../../../components/nav/component/Nav.js';
 import Field from '../../../../components/field/componet/Field.js';
 
 function Render() {
-    const { fields } = useContext(context)
+  const { fields } = useContext(context)
 
   const containerRef = useRef(null);
   const boxRef = useRef(null);
@@ -68,16 +68,13 @@ function Render() {
   return (
     <Container>
       <Main ref={containerRef} className="main">
+      <Nav/>
+
         <City ref={boxRef} className="box">
+
             
             {fields && fields.map((field, key)=>{
 
-            let color = ''
-            if(field.type === 'ghost') {
-              color = 'rgb(166, 245, 245, 0.3)'
-            }else{
-              color = 'green'
-            }
             return( <Field field = {field} >{field.characteristic}</Field> )
 
           })}
