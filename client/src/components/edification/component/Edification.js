@@ -2,12 +2,12 @@ import React, { useRef } from 'react'
 import { Container } from '../css/Edification'
 import { useDrag } from 'react-dnd'
 
-const Edification = ({color, id}) => {
+const Edification = ({edification}) => {
 
     const ref = useRef()
 
     const [{ isDragging }, dragRef] = useDrag({
-        item: {type: 'edification', id: id},
+        item: edification,
         type: 'edification',
         collect: monitor => ({
             isDragging: monitor.isDragging(),
@@ -17,8 +17,8 @@ const Edification = ({color, id}) => {
 
     return (
         <Container isDragging = {isDragging} ref={ref} >
-            <header style = {{backgroundColor: color}}>
-                
+            <header > 
+                <h1>{edification.name}</h1>
             </header>
         </Container>
     )

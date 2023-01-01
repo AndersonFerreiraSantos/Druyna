@@ -102,6 +102,15 @@ module.exports = class FieldController {
         })
     }
 
+
+    static updateSlot(require, response) {
+        const field = new Field()
+
+        field.update(require.body).then((result) => {
+            response.json(result)
+        })
+    }
+
     static deleteAllFields(require, response) {
         const field = new Field()
         field.get().then((allFields) => {

@@ -27,7 +27,7 @@ const Field = ({field}) => {
             {
               field?.slots?.map((item) => {
                 return(
-                <Slot id = {item.id}/>
+                <Slot slot = {item} field = {field}/>
                 )
               })
          }
