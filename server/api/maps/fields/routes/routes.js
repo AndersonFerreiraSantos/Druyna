@@ -10,7 +10,6 @@ router.delete('/delete_field', fields.deleteField )
 router.delete('/delete_all_fields', fields.deleteAllFields )
 
 router.put('/update_field', fields.updateField )
-router.put('/update_field', fields.updateSlot )
-
+router.put('/update_slot', fields.updateSlot )
 
 module.exports = router

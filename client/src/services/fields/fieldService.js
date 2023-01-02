@@ -25,11 +25,21 @@ const updateField = (sendData) => {
     })
 }
 
+const updateSlot = (sendData) => {
+    console.log(sendData)
+    return new Promise((resolve) => {
+        REQ.PUT('/field/update_slot', sendData).then((result) => {
+            resolve(result)
+        })
+    })
+}
+
 
 const method = {
     getFields,
     newField,
-    updateField
+    updateField,
+    updateSlot
 }
 
 export default method

@@ -53,6 +53,19 @@ class Field {
         })
     }
 
+    async updateSlot(receiveData){
+
+        const {bottom, left, slots} =  receiveData
+
+        const update = { $set: { slots: slots} }
+        return new Promise((resolve, reject) => {
+            connection.db().collection("Fields").updateOne({bottom: bottom, left: left}, update, (err, res) => {
+                if (err) throw err;
+                resolve(res)
+              });
+        })
+    }
+
     async create(){
         return new Promise((resolve, reject) => {
             const field = connection.db().collection('Fields').insertOne({

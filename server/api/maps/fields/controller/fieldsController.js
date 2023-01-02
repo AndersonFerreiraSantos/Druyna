@@ -103,12 +103,16 @@ module.exports = class FieldController {
     }
 
 
-    static updateSlot(require, response) {
+    static async updateSlot(require, response) {
         const field = new Field()
+        await field.updateSlot(require.body)
 
-        field.update(require.body).then((result) => {
-            response.json(result)
+        let fieldUpdate
+        await field.get().then((result) => {
+            fieldUpdate = result
         })
+        response.json(fieldUpdate)
+
     }
 
     static deleteAllFields(require, response) {
