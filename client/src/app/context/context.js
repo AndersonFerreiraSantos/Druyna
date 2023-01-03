@@ -1,5 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
+//fields
 
-const context = createContext({});
-
-export default context;
+ export const context = createContext({});

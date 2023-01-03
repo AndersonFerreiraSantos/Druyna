@@ -1,13 +1,13 @@
 import { Container } from '../css/Field'
 import fieldService from '../../../services/fields/fieldService'
 import React, { useContext } from 'react';
-import context from '../../../app/context/context';
+import {context} from '../../../app/context/context';
 
 import Slot from '../../slot/component/Slot';
 
 const Field = ({field}) => {
     const { setFields } = useContext(context)
-    const {left, bottom, type, characteristic, onClick} = field
+    const {left, bottom, type } = field
 
     let color = ''
     if(type === "ghost") {

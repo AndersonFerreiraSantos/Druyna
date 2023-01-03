@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     height: 80%;
-    width: 20%;
+    width: 120px;
     background-color: black;
     position: absolute;
     z-index: 1;
@@ -28,11 +28,10 @@ export const Items = styled.div`
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-
     overflow-y: scroll;
 
 ::-webkit-scrollbar {
-    width: 0.95rem;
+    width: 10px;
     background: #1e1e24;
 }
 ::-webkit-scrollbar-track {

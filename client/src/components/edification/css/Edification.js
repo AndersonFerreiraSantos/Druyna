@@ -1,11 +1,11 @@
 import styled, {css} from "styled-components";
 
 export const Container = styled.div`
+    width: 96px;
     header {
-            width: 100%;
+            width: 100px;
             height: 100px;
-            background-color: red;
-   
+            background-color: ${(props) => props.color};
         }
     h1 {
         text-align: center 

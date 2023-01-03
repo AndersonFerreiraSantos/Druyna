@@ -16,7 +16,7 @@ const Edification = ({edification}) => {
     dragRef(ref)
 
     return (
-        <Container isDragging = {isDragging} ref={ref} >
+        <Container isDragging = {isDragging} ref={ref} color = {edification.color}>
             <header > 
                 <h1>{edification.name}</h1>
             </header>

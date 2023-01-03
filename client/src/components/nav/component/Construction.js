@@ -1,11 +1,11 @@
 import { useState, } from 'react'
-import {Container, Close, Items, Div } from '../css/Nav'
+import {Container, Close, Items, Div } from '../css/Construction'
 
-import Edification from '../../../components/edification/component/Edification'
+import Edification from '../../edification/component/Edification'
 
-import  {EDIFICATION } from '../../../metadata/edifications/metadata'
+import  {EDIFICATION } from '../../../metadata/edifications/navEdification'
 
-const Nav = () => {
+const NavConstruction = () => {
 
     const [close, setClose] = useState(false)
 
@@ -21,7 +21,7 @@ const Nav = () => {
                     {
                         EDIFICATION.PRODUCTION.map((item) => {
                             return(
-                                <Edification edification={item}/>
+                                <Edification edification={item} />
                             )
                         })
                     }
@@ -31,4 +31,4 @@ const Nav = () => {
     )
 }
 
-export default Nav
+export default NavConstruction

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Container, Main, City } from '../css/Render.js';
+import { Container, Main, City, Edification } from '../css/Render.js';
 
-import fieldService from '../../../../services/fields/fieldService'
-import context from '../../../../app/context/context.js';
-import Nav from '../../../../components/nav/component/Nav.js';
-import Field from '../../../../components/field/componet/Field.js';
+import {context} from '../../../../app/context/context.js';
+import NavConstruction from '../../../../components/nav/component/Construction.js';
+import NavCity from '../../../../components/nav/component/City';
+import Field from '../../../../components/field/component/Field.js';
+import ModalEdification from '../../../../components/modal/component/Edification.js';
+import Tavern from '../../edifications/tavern/component/Tavern.js';
 
 function Render() {
   const { fields } = useContext(context)
@@ -68,11 +70,11 @@ function Render() {
   return (
     <Container>
       <Main ref={containerRef} className="main">
-      <Nav/>
-
+      <NavConstruction/>
+      <ModalEdification />
+      <NavCity/>
         <City ref={boxRef} className="box">
 
-            
             {fields && fields.map((field, key)=>{
 
             return( <Field field = {field} >{field.characteristic}</Field> )

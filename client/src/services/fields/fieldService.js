@@ -17,7 +17,6 @@ const newField = (sednData) => {
 }
 
 const updateField = (sendData) => {
-    console.log(sendData)
     return new Promise((resolve) => {
         REQ.PUT('/field/update_field', sendData).then((result) => {
             resolve(result)
@@ -26,7 +25,6 @@ const updateField = (sendData) => {
 }
 
 const updateSlot = (sendData) => {
-    console.log(sendData)
     return new Promise((resolve) => {
         REQ.PUT('/field/update_slot', sendData).then((result) => {
             resolve(result)

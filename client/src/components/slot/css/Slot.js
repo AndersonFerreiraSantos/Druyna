@@ -5,4 +5,6 @@ export const Container = styled.div`
     width: 98px;
     border: 1px solid black;
     float: left;
+
+    background-color: ${(props) => props.color}
 `

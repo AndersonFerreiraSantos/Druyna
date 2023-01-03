@@ -12,7 +12,7 @@ import Loading from '../../components/loadding/component/Loading'
 
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import Context from '../context/context'
+import {context} from '../context/context'
 
 import fieldService from '../../services/fields/fieldService'
 
@@ -21,9 +21,19 @@ function App() {
   const [isLoadingLoggerUser, setIsLoadingLoggerUser] = useState(true)
   const [internalPage, setInternalPage] = useState('')
   const [externalPage, setExternalPage] = useState('')
+
+  //contexts
   const [user, setUser] = useState(null)
   const [fields, setFields] = useState(null)
+  const [modalEdification, setModalEdification] = useState({status: true})
 
+  function statusModal(component){
+    if(modalEdification.status === true){
+        setModalEdification({...modalEdification, status : false})
+    }else{
+      setModalEdification({...modalEdification, status : true,  component : component})
+    }
+}
 
 
   useEffect(() => {
@@ -47,7 +57,7 @@ function App() {
 
       <div className='App'>
         { !isLoadingLoggerUser && 
-          <Context.Provider value={{user, setUser, fields, setFields}} >
+          <context.Provider value={{user, setUser, fields, setFields, modalEdification, statusModal}} >
             <BrowserRouter>
               <Header setExternalPage = {setExternalPage} setInternalPage = {setInternalPage} user = {user} />
                 <Routes>
@@ -57,7 +67,7 @@ function App() {
                 </Routes>
               <Footer />
             </BrowserRouter>
-          </Context.Provider> }
+          </context.Provider> }
     </div>
     {isLoadingLoggerUser && <Loading />}
     </DndProvider>
