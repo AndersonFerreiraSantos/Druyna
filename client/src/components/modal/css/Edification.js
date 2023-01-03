@@ -17,9 +17,8 @@ export const Container = styled.div`
 `
 
 export const Modal = styled.div`
-    width: 800px;
-    height: 800px;
-
+    width: 90%;
+    height: 95%;  
     background-color: white;
 `
 
@@ -27,6 +26,4 @@ export const Close = styled.button`
     background-color: red;
     padding: 10px;
     position: absolute;
-    left: 800px;
-
 `
