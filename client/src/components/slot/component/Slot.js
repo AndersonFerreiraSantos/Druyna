@@ -36,7 +36,7 @@ const Slot = ({slot, field}) => {
 
     dropRef(ref)
     return (
-        <Container ref = {ref} color = {slot.color} onClick= {aaa}>
+        <Container ref = {ref} color = {slot.color} onClick= {slot.edification ? aaa : undefined } ondblclick = {console.log('teste')}>
             {<h1>{slot.edification} </h1>}
         </Container>
     )

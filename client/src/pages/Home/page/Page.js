@@ -12,7 +12,6 @@ const Page = ({externalPage}) => {
         <Container>
             {externalPage === 'UserRegister' ? <UserRegister /> :
              externalPage === 'UserLogin' ? <UserLogin /> :
-
              externalPage === 'News' ? <News /> :
              externalPage === 'Home' ? <Home /> :
              externalPage === 'Update' ? <Update /> :

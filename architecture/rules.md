@@ -1,0 +1,1 @@
+global context => map mode = mode
