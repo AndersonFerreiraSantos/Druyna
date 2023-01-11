@@ -3,9 +3,10 @@ import { Container } from '../css/Slot'
 import { useDrop} from 'react-dnd'
 import {context} from '../../../app/context/context'
 
+import {SLOT} from '../metadata/edification' 
+
 import fieldService from '../../../services/fields/fieldService'
 
-import Tavern from '../../../pages/City/edifications/tavern/component/Tavern'
 const Slot = ({slot, field}) => {
     const { setFields, statusModal } = useContext(context)
     const ref = useRef()
@@ -22,8 +23,8 @@ const Slot = ({slot, field}) => {
         })
     }
 
-    function aaa(){
-        statusModal(<Tavern />)
+    function Modal(){
+        statusModal(SLOT[slot.edification])
     }
     
     const [, dropRef] = useDrop({ 
@@ -36,7 +37,7 @@ const Slot = ({slot, field}) => {
 
     dropRef(ref)
     return (
-        <Container ref = {ref} color = {slot.color} onClick= {slot.edification ? aaa : undefined } ondblclick = {console.log('teste')}>
+        <Container ref = {ref} color = {slot.color} onClick= {slot.edification ? Modal : undefined }>
             {<h1>{slot.edification} </h1>}
         </Container>
     )

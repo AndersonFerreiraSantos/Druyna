@@ -9,6 +9,7 @@ export const Client = styled.div`
     bottom: 5%;
     right: 0;
     align-items: center;
+    z-index: 3;
 `
 
 export const OpenMessage = styled.div`
@@ -16,7 +17,7 @@ export const OpenMessage = styled.div`
     bottom: 6%;
     right: 1%;
     position: fixed;
-    background-color: green;
+    background-color: yellow;
     width: 50px;
     height: 30px;
     z-index: 1;

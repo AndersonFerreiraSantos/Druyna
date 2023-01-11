@@ -7,6 +7,7 @@ import NavCity from '../../../../components/nav/component/City';
 import Field from '../../../../components/field/component/Field.js';
 import ModalEdification from '../../../../components/modal/component/Edification.js';
 import Tavern from '../../edifications/tavern/component/Tavern.js';
+import Chat from '../../../../chat/component/Chat'
 
 function Render() {
   const { fields } = useContext(context)
@@ -70,6 +71,7 @@ function Render() {
   return (
     <Container>
       <Main ref={containerRef} className="main">
+      <Chat />
       <NavConstruction/>
       <ModalEdification />
       <NavCity/>

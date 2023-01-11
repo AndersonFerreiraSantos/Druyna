@@ -6,7 +6,7 @@ export const Container = styled.div`
     background-color: black;
     position: absolute;
     z-index: 1;
-    right: ${(props) => props.close ? '-20%' : '0%'};
+    right: ${(props) => props.close ? '-120px' : '0%'};
     transition: 2ms;
     top: 10%;
 

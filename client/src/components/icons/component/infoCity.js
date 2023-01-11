@@ -1,11 +1,16 @@
-import {Container, Icon } from '../css/infoCity'
+import {Container, Icon, Text } from '../css/infoCity'
 
-const IconInfoCity = ({img}) => {
+import Population from '../../../icons/population/population.json'
+
+import Lottie from 'lottie-react'
+const IconInfoCity = ({img, text}) => {
     return (
-        <Container>
-            <Icon>
-                
-            </Icon>
+        <Container >
+            <Lottie animationData={Population} />
+
+            <Text>
+                {text}
+            </Text>
         </Container>
     )
 }
